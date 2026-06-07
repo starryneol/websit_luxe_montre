@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LUXE MONTRE 尊時匯，香港高級腕錶沙龍，提供名錶現貨、寄售收購、鑑定修復及私人預約。">
+  <title>LUXE MONTRE 尊時匯 | 高級鐘錶官方沙龍</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Serif+TC:wght@300;400;500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <style>
+    :root {
+      --gold: #997d4d;
+      --gold-soft: rgba(153, 125, 77, .18);
+      --ink: #111;
+      --ink-2: #1c1b19;
+      --cream: #fbf9f6;
+      --paper: #f4efe7;
+      --white: #fff;
+      --muted: #76716a;
+      --line: rgba(153, 125, 77, .25);
+      --green: #1f4a3f;
+      --wine: #5a1f2a;
+      --shadow: 0 28px 70px rgba(17, 17, 17, .13);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Montserrat, Arial, sans-serif;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    body.modal-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--gold); color: var(--white); }
+
+    .serif { font-family: Cinzel, "Noto Serif TC", serif; }
+    .tc { font-family: "Noto Serif TC", serif; }
+    .container { width: min(1380px, calc(100% - 72px)); margin: 0 auto; }
+    .eyebrow {
+      color: var(--gold);
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(251, 249, 246, .9);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-wrap {
+      height: 104px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: 50%;
+      font-family: Cinzel, serif;
+      font-size: 1.45rem;
+      transition: background .35s ease, color .35s ease;
+    }
+
+    .brand:hover .brand-mark { background: var(--gold); color: var(--white); }
+    .brand-name {
+      display: block;
+      font-family: Cinzel, serif;
+      font-size: 1.48rem;
+      letter-spacing: .13em;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-family: Cinzel, serif;
+      font-size: .68rem;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 46px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .nav a { transition: color .25s ease; }
+    .nav a:hover, .nav a.accent { color: var(--gold); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .icon-btn {
+      width: 52px;
+      height: 52px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .45);
+      color: var(--ink);
+      transition: border-color .25s ease, color .25s ease, background .25s ease;
+    }
+
+    .icon-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--white); }
+    .lang-btn {
+      width: 60px;
+      height: 52px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .45);
+      color: var(--ink);
+      font-family: Cinzel, serif;
+      font-size: .84rem;
+      letter-spacing: .12em;
+    }
+
+    .mobile-panel {
+      display: none;
+      border-top: 1px solid var(--line);
+      background: rgba(251, 249, 246, .98);
+      padding: 18px 20px 24px;
+    }
+
+    .mobile-panel.open { display: block; }
+    .mobile-panel a {
+      display: block;
+      padding: 14px 0;
+      color: var(--ink);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(153, 125, 77, .13);
+    }
+
+    .hero {
+      min-height: 94vh;
+      position: relative;
+      display: grid;
+      align-items: center;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      filter: saturate(.78) contrast(1.03);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(17, 17, 17, .82), rgba(17, 17, 17, .48) 46%, rgba(17, 17, 17, .22)),
+        linear-gradient(180deg, rgba(17, 17, 17, .4), rgba(17, 17, 17, .76));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 84px;
+      width: min(900px, calc(100% - 40px));
+      margin: 0 auto;
+      transform: translateY(20px);
+    }
+
+    .hero h1 {
+      margin: 24px 0 24px;
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-size: clamp(2.85rem, 7vw, 6.6rem);
+      line-height: 1.04;
+      font-weight: 500;
+      letter-spacing: .08em;
+      max-width: 780px;
+    }
+
+    .hero p {
+      max-width: 630px;
+      margin: 0 0 36px;
+      color: rgba(255, 255, 255, .82);
+      font-family: "Noto Serif TC", serif;
+      font-size: 1rem;
+      line-height: 2;
+    }
+
+    .button-row { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 22px;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: var(--white);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); background: var(--ink); border-color: var(--ink); }
+    .btn.secondary { background: transparent; color: var(--gold); }
+    .btn.secondary:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .btn.dark { background: var(--ink); border-color: var(--ink); }
+    .btn.dark:hover { background: var(--gold); border-color: var(--gold); }
+
+    section { padding: 104px 0; }
+    .section-head {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 52px;
+    }
+
+    .section-head.center { text-align: center; justify-items: center; }
+    .section-head h2 {
+      margin: 0;
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.16;
+      font-weight: 500;
+      letter-spacing: .08em;
+    }
+
+    .section-head p {
+      max-width: 680px;
+      margin: 0;
+      color: var(--muted);
+      font-family: "Noto Serif TC", serif;
+      line-height: 2;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, .92fr);
+      gap: 78px;
+      align-items: center;
+    }
+
+    .story-photo {
+      min-height: 620px;
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .story-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      object-fit: cover;
+      filter: grayscale(.18) saturate(.9);
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 42px;
+      background: var(--line);
+    }
+
+    .stat {
+      background: var(--cream);
+      padding: 28px 22px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--gold);
+      font-family: Cinzel, serif;
+      font-size: 1.9rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-family: "Noto Serif TC", serif;
+      font-size: .78rem;
+    }
+
+    .collection { background: var(--white); }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 46px;
+    }
+
+    .filter-btn {
+      min-height: 42px;
+      padding: 0 16px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .filter-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(153, 125, 77, .05);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+      align-items: start;
+    }
+
+    .watch-card {
+      border: 1px solid rgba(153, 125, 77, .16);
+      background: var(--white);
+      box-shadow: 0 18px 45px rgba(17, 17, 17, .04);
+      transition: transform .45s ease, box-shadow .45s ease, border-color .45s ease;
+      overflow: hidden;
+    }
+
+    .watch-card:nth-child(2n) { margin-top: 58px; }
+    .watch-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: rgba(153, 125, 77, .45);
+    }
+
+    .watch-image {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: linear-gradient(145deg, var(--paper), var(--white));
+    }
+
+    .watch-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(.22, .61, .36, 1), filter 1.2s ease;
+    }
+
+    .watch-card:hover .watch-image img {
+      transform: scale(1.045);
+      filter: saturate(.86);
+    }
+
+    .watch-dossier {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(17, 17, 17, .73);
+      opacity: 0;
+      transition: opacity .45s ease;
+    }
+
+    .watch-card:hover .watch-dossier { opacity: 1; }
+    .watch-dossier span {
+      color: var(--gold);
+      border: 1px solid rgba(153, 125, 77, .8);
+      padding: 13px 18px;
+      font-family: Cinzel, serif;
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .watch-body { padding: 24px 24px 26px; text-align: center; }
+    .watch-body h3 {
+      margin: 9px 0 12px;
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-size: 1.23rem;
+      font-weight: 500;
+      line-height: 1.35;
+      letter-spacing: .05em;
+    }
+
+    .watch-meta {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-family: "Noto Serif TC", serif;
+      font-size: .76rem;
+    }
+
+    .price {
+      margin-top: 18px;
+      color: var(--ink);
+      font-family: Cinzel, serif;
+      font-size: .95rem;
+      letter-spacing: .1em;
+    }
+
+    .services {
+      color: var(--cream);
+      background:
+        linear-gradient(180deg, rgba(17, 17, 17, .94), rgba(17, 17, 17, .96)),
+        url("https://images.unsplash.com/photo-1614703418052-d8f0d0a8f9c4?q=80&w=2200&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .services .section-head p { color: rgba(251, 249, 246, .68); }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .service-card {
+      min-height: 320px;
+      padding: 34px;
+      border: 1px solid rgba(153, 125, 77, .34);
+      background: rgba(255, 255, 255, .035);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background .35s ease, border-color .35s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(153, 125, 77, .75);
+      background: rgba(255, 255, 255, .07);
+    }
+
+    .service-card svg { color: var(--gold); }
+    .service-card h3 {
+      margin: 26px 0 16px;
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-weight: 500;
+      font-size: 1.55rem;
+      line-height: 1.35;
+      letter-spacing: .06em;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: rgba(251, 249, 246, .7);
+      font-family: "Noto Serif TC", serif;
+      font-size: .92rem;
+      line-height: 2;
+    }
+
+    .concierge-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: 64px;
+      align-items: center;
+    }
+
+    .chat-shell {
+      background: var(--ink);
+      padding: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .chat {
+      height: 560px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(153, 125, 77, .38);
+      background: #151515;
+      color: var(--cream);
+    }
+
+    .chat-head {
+      min-height: 58px;
+      padding: 0 22px;
+      border-bottom: 1px solid rgba(153, 125, 77, .22);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .chat-head span {
+      color: var(--gold);
+      font-family: Cinzel, serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .chat-log {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .msg {
+      max-width: 82%;
+      font-family: "Noto Serif TC", serif;
+      font-size: .9rem;
+      line-height: 1.9;
+    }
+
+    .msg strong {
+      display: block;
+      margin-bottom: 5px;
+      color: rgba(153, 125, 77, .82);
+      font-family: Cinzel, serif;
+      font-size: .58rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .msg.user {
+      align-self: flex-end;
+      color: var(--gold);
+      text-align: right;
+    }
+
+    .msg.bot { align-self: flex-start; color: var(--cream); }
+    .chat-form {
+      padding: 18px;
+      border-top: 1px solid rgba(153, 125, 77, .22);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+    }
+
+    .chat-form input {
+      min-width: 0;
+      border: 1px solid rgba(153, 125, 77, .34);
+      background: transparent;
+      color: var(--cream);
+      padding: 0 14px;
+      height: 46px;
+      outline: none;
+      font-family: "Noto Serif TC", serif;
+    }
+
+    .chat-form input:focus { border-color: var(--gold); }
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .quick-actions .btn { min-height: 44px; }
+
+    .contact {
+      background: var(--white);
+      border-top: 1px solid rgba(153, 125, 77, .18);
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 22px;
+      margin-top: 38px;
+      color: var(--muted);
+      font-family: "Noto Serif TC", serif;
+    }
+
+    .contact-panel b {
+      display: block;
+      color: var(--gold);
+      font-family: Cinzel, serif;
+      font-size: .76rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .divider {
+      width: 1px;
+      height: 56px;
+      background: var(--line);
+    }
+
+    .footer {
+      padding: 38px 0;
+      background: var(--ink);
+      color: var(--cream);
+      border-top: 1px solid rgba(153, 125, 77, .28);
+    }
+
+    .footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: rgba(251, 249, 246, .58);
+      font-size: .74rem;
+    }
+
+    .footer strong {
+      color: var(--gold);
+      font-family: Cinzel, serif;
+      font-size: 1.05rem;
+      letter-spacing: .14em;
+      font-weight: 500;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      padding: 22px;
+      background: rgba(17, 17, 17, .92);
+      backdrop-filter: blur(14px);
+    }
+
+    .modal.open { display: grid; }
+    .modal-card {
+      width: min(1080px, 100%);
+      max-height: 88vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--cream);
+      box-shadow: 0 36px 90px rgba(0, 0, 0, .42);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-media {
+      min-height: 540px;
+      background: var(--white);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .modal-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-content {
+      padding: 54px;
+      overflow-y: auto;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 2;
+      background: rgba(251, 249, 246, .85);
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .modal-content h3 {
+      margin: 12px 0 22px;
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-size: 2rem;
+      line-height: 1.22;
+      font-weight: 500;
+      letter-spacing: .06em;
+    }
+
+    .dossier {
+      display: grid;
+      gap: 1px;
+      background: rgba(153, 125, 77, .18);
+      margin: 28px 0;
+    }
+
+    .dossier-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 18px;
+      padding: 16px 0;
+      background: var(--cream);
+      align-items: baseline;
+    }
+
+    .dossier-row b {
+      color: var(--muted);
+      font-family: Cinzel, serif;
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .dossier-row span {
+      color: var(--ink);
+      font-family: "Noto Serif TC", serif;
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+
+    .modal-story {
+      color: var(--muted);
+      font-family: "Noto Serif TC", serif;
+      font-size: .92rem;
+      line-height: 2;
+    }
+
+    @media (max-width: 980px) {
+      .nav { display: none; }
+      .story-grid, .concierge-grid, .modal-card { grid-template-columns: 1fr; }
+      .product-grid, .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .watch-card:nth-child(2n) { margin-top: 0; }
+      .modal-media { min-height: 340px; }
+      .modal-content { padding: 36px; }
+      .contact-panel { grid-template-columns: 1fr; text-align: center; }
+      .divider { display: none; }
+    }
+
+    @media (min-width: 981px) {
+      .menu-btn { display: none; }
+    }
+
+    @media (min-width: 1200px) {
+      .nav-wrap { height: 116px; }
+      .brand-mark {
+        width: 64px;
+        height: 64px;
+        font-size: 1.65rem;
+      }
+      .brand-name { font-size: 1.68rem; }
+      .brand-sub { font-size: .74rem; }
+      .nav {
+        gap: 54px;
+        font-size: .9rem;
+      }
+      .lang-btn {
+        width: 66px;
+        height: 58px;
+        font-size: .9rem;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container { width: min(100% - 28px, 1180px); }
+      .nav-wrap { height: 72px; }
+      .brand-mark { width: 36px; height: 36px; }
+      .brand-name { font-size: .93rem; letter-spacing: .09em; }
+      .brand-sub { display: none; }
+      .hero { min-height: 91vh; }
+      .hero h1 { font-size: clamp(2.35rem, 12vw, 3.6rem); letter-spacing: .04em; }
+      .hero p { font-size: .92rem; }
+      section { padding: 76px 0; }
+      .story-photo, .story-photo img { min-height: 390px; }
+      .stat-strip, .product-grid, .service-grid { grid-template-columns: 1fr; }
+      .watch-body { padding: 22px 18px; }
+      .chat { height: 520px; }
+      .chat-form { grid-template-columns: 1fr; }
+      .chat-form .btn { width: 100%; }
+      .msg { max-width: 94%; }
+      .modal { padding: 12px; align-items: start; overflow-y: auto; }
+      .modal-card { max-height: none; margin: 18px 0; }
+      .modal-content { padding: 28px 22px; }
+      .dossier-row { grid-template-columns: 1fr; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="LUXE MONTRE 尊時匯">
+        <span class="brand-mark">L</span>
+        <span>
+          <span class="brand-name">LUXE MONTRE</span>
+          <span class="brand-sub">Geneva Standard · Hong Kong</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#collection" data-i18n="nav_collection">傳世珍藏</a>
+        <a href="#services" data-i18n="nav_services">藏品交流</a>
+        <a href="#atelier" data-i18n="nav_atelier">匠心修復</a>
+        <a class="accent" href="#concierge" data-i18n="nav_concierge">智能管家</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-btn" type="button" id="langBtn" aria-label="Switch language">EN</button>
+        <button class="icon-btn menu-btn" type="button" id="menuBtn" aria-label="Open menu"><i data-lucide="menu"></i></button>
+      </div>
+    </div>
+    <div class="mobile-panel" id="mobilePanel">
+      <a href="#collection" data-i18n="nav_collection">傳世珍藏</a>
+      <a href="#services" data-i18n="nav_services">藏品交流</a>
+      <a href="#atelier" data-i18n="nav_atelier">匠心修復</a>
+      <a href="#concierge" data-i18n="nav_concierge">智能管家</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="LUXE MONTRE hero">
+      <img class="hero-media" src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=2400&auto=format&fit=crop" alt="Luxury watches displayed in a salon">
+      <div class="hero-content">
+        <span class="eyebrow" data-i18n="hero_kicker">Begin Your Own Tradition</span>
+        <h1 data-i18n="hero_title">尊時匯</h1>
+        <p data-i18n="hero_copy">香港高級鐘錶官方沙龍，為藏家甄選 Patek Philippe、Rolex、Audemars Piguet 等傳世時計，並提供寄售、鑑定、修復與私人品鑑服務。</p>
+        <div class="button-row">
+          <a class="btn" href="#collection"><i data-lucide="watch"></i><span data-i18n="hero_primary">尋覓傳世時計</span></a>
+          <a class="btn secondary" href="#concierge"><i data-lucide="message-square"></i><span data-i18n="hero_secondary">諮詢行情管家</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container story-grid">
+        <div class="story-photo">
+          <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?q=80&w=1400&auto=format&fit=crop" alt="Close up of a luxury chronograph watch">
+        </div>
+        <div>
+          <div class="section-head">
+            <span class="eyebrow" data-i18n="story_kicker">The Philosophy</span>
+            <h2 data-i18n="story_title">時間藝術的守護者</h2>
+            <p data-i18n="story_copy">每一枚複雜功能腕錶，都是機芯、材質、比例與歷史沉澱的共同證明。尊時匯以沙龍式陳列取代倉促交易，讓藏家在充分資訊與私密接待中完成選購、交流與傳承。</p>
+          </div>
+          <div class="stat-strip">
+            <div class="stat"><strong>24h</strong><span data-i18n="stat_1">行情初步回覆</span></div>
+            <div class="stat"><strong>100%</strong><span data-i18n="stat_2">原廠附件核驗</span></div>
+            <div class="stat"><strong>HK</strong><span data-i18n="stat_3">私人沙龍交收</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection" id="collection">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow" data-i18n="collection_kicker">The Grand Collection Salons</span>
+          <h2 data-i18n="collection_title">傳世現貨珍藏</h2>
+          <p data-i18n="collection_copy">按複雜功能、運動優雅與經典傳承分類陳列，每枚腕錶皆附鑑定檔案、附件狀態與預約賞錶入口。</p>
+        </div>
+        <div class="filters" id="filters" aria-label="Watch categories"></div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow" data-i18n="services_kicker">The Horology Atelier</span>
+          <h2 data-i18n="services_title">藏品交流與工坊服務</h2>
+          <p data-i18n="services_copy">以國際拍賣行標準處理估價、寄售、收購與維修，讓高價時計的流轉保持清晰、莊重與可追溯。</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <div>
+              <i data-lucide="landmark"></i>
+              <h3 data-i18n="service_1_title">收藏庫釋放</h3>
+              <p data-i18n="service_1_copy">根據成交紀錄、稀缺度、品相與附件完整度，提供透明市場指引價與即時收購方案。</p>
+            </div>
+            <a class="btn secondary" href="#concierge"><i data-lucide="arrow-right"></i><span data-i18n="service_cta">預約評估</span></a>
+          </article>
+          <article class="service-card">
+            <div>
+              <i data-lucide="badge-check"></i>
+              <h3 data-i18n="service_2_title">鑑定檔案</h3>
+              <p data-i18n="service_2_copy">核對機芯、錶殼、證書、保卡、維修紀錄與配件，形成完整的私人藏品檔案冊。</p>
+            </div>
+            <a class="btn secondary" href="#contact"><i data-lucide="arrow-right"></i><span data-i18n="service_cta">預約評估</span></a>
+          </article>
+          <article class="service-card" id="atelier">
+            <div>
+              <i data-lucide="settings"></i>
+              <h3 data-i18n="service_3_title">匠心修復</h3>
+              <p data-i18n="service_3_copy">由資深製錶師處理洗油、擒縱微調、防水測試與外觀保養，盡量保留腕錶原始輪廓。</p>
+            </div>
+            <a class="btn secondary" href="#contact"><i data-lucide="arrow-right"></i><span data-i18n="service_cta">預約評估</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="concierge">
+      <div class="container concierge-grid">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow" data-i18n="ai_kicker">AI Horology Concierge</span>
+            <h2 data-i18n="ai_title">日內瓦智能鐘錶管家</h2>
+            <p data-i18n="ai_copy">輸入腕錶型號或品牌系列，管家會以市場行情、工藝背景與稀缺度方向回覆，並引導閣下預約實體沙龍或 WhatsApp 專家洽談。</p>
+          </div>
+          <div class="quick-actions">
+            <button class="btn dark" type="button" data-prompt="5712/1A"><i data-lucide="sparkles"></i><span>5712/1A</span></button>
+            <button class="btn secondary" type="button" data-prompt="Daytona 116500LN"><i data-lucide="timer"></i><span>Daytona</span></button>
+            <button class="btn secondary" type="button" data-prompt="Royal Oak 15500ST"><i data-lucide="gem"></i><span>Royal Oak</span></button>
+          </div>
+        </div>
+        <div class="chat-shell">
+          <div class="chat" role="region" aria-label="AI horology concierge">
+            <div class="chat-head">
+              <span data-i18n="chat_title">Secure Salon Channel</span>
+              <i data-lucide="lock-keyhole"></i>
+            </div>
+            <div class="chat-log" id="chatLog"></div>
+            <form class="chat-form" id="chatForm">
+              <input id="chatInput" autocomplete="off" data-i18n-placeholder="chat_placeholder" placeholder="請輸入型號，例如 116500LN 或 5711">
+              <button class="btn" type="submit"><i data-lucide="send"></i><span data-i18n="chat_send">詢問</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow" data-i18n="contact_kicker">Private Appointment</span>
+          <h2 data-i18n="contact_title">預約私人沙龍</h2>
+          <p data-i18n="contact_copy">親臨香港旗艦沙龍，在私密環境中品鑑現貨、提交寄售委託或安排腕錶保養。</p>
+          <a class="btn dark" href="https://wa.me/85200000000" target="_blank" rel="noreferrer"><i data-lucide="phone"></i><span data-i18n="contact_cta">WhatsApp 預約品鑑</span></a>
+        </div>
+        <div class="contact-panel">
+          <div><b>Location</b><span data-i18n="contact_location">香港九龍尖沙咀 尊時沙龍</span></div>
+          <span class="divider"></span>
+          <div><b>Hours</b><span data-i18n="contact_hours">周一至周六 11:00 - 19:00</span></div>
+          <span class="divider"></span>
+          <div><b>Email</b><span>salon@luxemontre.hk</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <strong>LUXE MONTRE</strong>
+      <span>© 2026 Luxe Montre (HK). Preserving Time.</span>
+      <span>Instagram · Contact · Private Salon</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="icon-btn close-btn" type="button" id="closeModal" aria-label="Close"><i data-lucide="x"></i></button>
+      <div class="modal-media"><img id="modalImage" alt=""></div>
+      <div class="modal-content">
+        <span class="eyebrow" id="modalBrand"></span>
+        <h3 id="modalTitle"></h3>
+        <div class="dossier" id="modalDossier"></div>
+        <p class="modal-story" id="modalStory"></p>
+        <div class="button-row" style="margin-top: 30px;">
+          <a class="btn dark" href="#concierge" id="modalAsk"><i data-lucide="message-square"></i><span data-i18n="modal_ask">索取市場報價</span></a>
+          <a class="btn secondary" href="#contact" id="modalBook"><i data-lucide="calendar-check"></i><span data-i18n="modal_book">預約賞錶</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const i18n = {
+      zh: {
+        nav_collection: "傳世珍藏",
+        nav_services: "藏品交流",
+        nav_atelier: "匠心修復",
+        nav_concierge: "智能管家",
+        hero_kicker: "Begin Your Own Tradition",
+        hero_title: "尊時匯",
+        hero_copy: "香港高級鐘錶官方沙龍，為藏家甄選 Patek Philippe、Rolex、Audemars Piguet 等傳世時計，並提供寄售、鑑定、修復與私人品鑑服務。",
+        hero_primary: "尋覓傳世時計",
+        hero_secondary: "諮詢行情管家",
+        story_kicker: "The Philosophy",
+        story_title: "時間藝術的守護者",
+        story_copy: "每一枚複雜功能腕錶，都是機芯、材質、比例與歷史沉澱的共同證明。尊時匯以沙龍式陳列取代倉促交易，讓藏家在充分資訊與私密接待中完成選購、交流與傳承。",
+        stat_1: "行情初步回覆",
+        stat_2: "原廠附件核驗",
+        stat_3: "私人沙龍交收",
+        collection_kicker: "The Grand Collection Salons",
+        collection_title: "傳世現貨珍藏",
+        collection_copy: "按複雜功能、運動優雅與經典傳承分類陳列，每枚腕錶皆附鑑定檔案、附件狀態與預約賞錶入口。",
+        filter_all: "全部瑰寶",
+        filter_grand: "超級複雜功能",
+        filter_sports: "高雅運動系列",
+        filter_heritage: "經典傳承系列",
+        services_kicker: "The Horology Atelier",
+        services_title: "藏品交流與工坊服務",
+        services_copy: "以國際拍賣行標準處理估價、寄售、收購與維修，讓高價時計的流轉保持清晰、莊重與可追溯。",
+        service_1_title: "收藏庫釋放",
+        service_1_copy: "根據成交紀錄、稀缺度、品相與附件完整度，提供透明市場指引價與即時收購方案。",
+        service_2_title: "鑑定檔案",
+        service_2_copy: "核對機芯、錶殼、證書、保卡、維修紀錄與配件，形成完整的私人藏品檔案冊。",
+        service_3_title: "匠心修復",
+        service_3_copy: "由資深製錶師處理洗油、擒縱微調、防水測試與外觀保養，盡量保留腕錶原始輪廓。",
+        service_cta: "預約評估",
+        ai_kicker: "AI Horology Concierge",
+        ai_title: "日內瓦智能鐘錶管家",
+        ai_copy: "輸入腕錶型號或品牌系列，管家會以市場行情、工藝背景與稀缺度方向回覆，並引導閣下預約實體沙龍或 WhatsApp 專家洽談。",
+        chat_title: "Secure Salon Channel",
+        chat_placeholder: "請輸入型號，例如 116500LN 或 5711",
+        chat_send: "詢問",
+        bot_name: "The Butler",
+        user_name: "Collector",
+        bot_welcome: "尊敬的藏家，您好。我是您的專屬鐘錶管家。請問閣下今日想了解哪一款傳世時計？",
+        bot_reply: "尊敬的藏家，關於「{query}」，目前建議先核驗年份、附件完整度、錶殼拋光痕跡與近三個月成交紀錄。若閣下願意，我們可安排沙龍專家提供更精準的市場指引與收購方案。",
+        bot_thinking: "管家正在查閱行情與工藝資料...",
+        bot_error: "目前模型服務暫時未能連線，已先提供基礎評估方向。請稍後再試，或直接 WhatsApp 預約沙龍專家。",
+        contact_kicker: "Private Appointment",
+        contact_title: "預約私人沙龍",
+        contact_copy: "親臨香港旗艦沙龍，在私密環境中品鑑現貨、提交寄售委託或安排腕錶保養。",
+        contact_cta: "WhatsApp 預約品鑑",
+        contact_location: "香港九龍尖沙咀 尊時沙龍",
+        contact_hours: "周一至周六 11:00 - 19:00",
+        modal_ask: "索取市場報價",
+        modal_book: "預約賞錶",
+        dossier_caliber: "機芯",
+        dossier_material: "材質",
+        dossier_complication: "功能",
+        dossier_certificate: "附件",
+        dossier_price: "指引價"
+      },
+      en: {
+        nav_collection: "Collections",
+        nav_services: "Acquisition",
+        nav_atelier: "Restoration",
+        nav_concierge: "Concierge",
+        hero_kicker: "Begin Your Own Tradition",
+        hero_title: "LUXE MONTRE",
+        hero_copy: "A Hong Kong haute horology salon curating Patek Philippe, Rolex, Audemars Piguet and other collectible timepieces with consignment, authentication, restoration and private appointments.",
+        hero_primary: "Explore Timepieces",
+        hero_secondary: "Ask Concierge",
+        story_kicker: "The Philosophy",
+        story_title: "Guardians of Horological Art",
+        story_copy: "Every complicated watch carries movement architecture, material discipline, proportion and history. LUXE MONTRE replaces rushed transactions with salon presentation, verified information and discreet collector service.",
+        stat_1: "Market response",
+        stat_2: "Accessory review",
+        stat_3: "Salon handover",
+        collection_kicker: "The Grand Collection Salons",
+        collection_title: "Available Timepieces",
+        collection_copy: "Browse by grand complications, elegant sports and iconic heritage. Each timepiece includes a dossier, accessory status and private viewing access.",
+        filter_all: "All Timepieces",
+        filter_grand: "Grand Complications",
+        filter_sports: "Elegant Sports",
+        filter_heritage: "Iconic Heritage",
+        services_kicker: "The Horology Atelier",
+        services_title: "Acquisition & Atelier Services",
+        services_copy: "Auction-grade valuation, consignment, acquisition and restoration for high-value watches with clarity, discretion and traceability.",
+        service_1_title: "Collection Release",
+        service_1_copy: "Transparent guidance based on recent transactions, rarity, condition and accessory completeness, with acquisition options.",
+        service_2_title: "Authentication Dossier",
+        service_2_copy: "Movement, case, certificate, warranty card, service history and accessories are reviewed for a private collector file.",
+        service_3_title: "Master Restoration",
+        service_3_copy: "Experienced watchmakers handle overhaul, regulation, pressure testing and refinishing while preserving original case definition.",
+        service_cta: "Request Review",
+        ai_kicker: "AI Horology Concierge",
+        ai_title: "Your Geneva AI Concierge",
+        ai_copy: "Enter a reference or collection. The concierge responds with market context, craft background and rarity direction, then routes you to a salon appointment or WhatsApp specialist.",
+        chat_title: "Secure Salon Channel",
+        chat_placeholder: "Enter a reference, e.g. 116500LN or 5711",
+        chat_send: "Send",
+        bot_name: "The Butler",
+        user_name: "Collector",
+        bot_welcome: "Respected Collector, welcome. I am your horology concierge. Which timepiece shall we discuss today?",
+        bot_reply: "Respected Collector, regarding “{query}”, I suggest reviewing production year, accessories, case polishing and recent transaction records. Our salon specialist can provide a more precise valuation and acquisition proposal.",
+        bot_thinking: "The concierge is reviewing market and craft context...",
+        bot_error: "The model service is temporarily unavailable. I have provided basic guidance for now. Please try again later or contact the salon via WhatsApp.",
+        contact_kicker: "Private Appointment",
+        contact_title: "Private Appointments",
+        contact_copy: "Visit the Hong Kong flagship salon for private viewing, consignment submission or maintenance consultation.",
+        contact_cta: "Book via WhatsApp",
+        contact_location: "Tsim Sha Tsui, Hong Kong",
+        contact_hours: "Monday to Saturday 11:00 - 19:00",
+        modal_ask: "Request Valuation",
+        modal_book: "Book Viewing",
+        dossier_caliber: "Caliber",
+        dossier_material: "Material",
+        dossier_complication: "Function",
+        dossier_certificate: "Set",
+        dossier_price: "Guide"
+      }
+    };
+
+    const products = [
+      {
+        id: 1,
+        category: "grand",
+        brand: "Patek Philippe",
+        title: "Nautilus 5712/1A",
+        image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1200&auto=format&fit=crop",
+        caliber: "240 PS IRM C LU",
+        material: "Stainless Steel",
+        complication: "Moon phases, power reserve, date",
+        certificate: "Full set, original certificate",
+        price: "HKD 920,000+",
+        story: "5712/1A 延續 Nautilus 舷窗線條，並以不對稱盤面展現月相、動力儲存與小秒針的均衡張力，是運動優雅與複雜功能交匯的代表。"
+      },
+      {
+        id: 2,
+        category: "sports",
+        brand: "Audemars Piguet",
+        title: "Royal Oak 15500ST",
+        image: "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?q=80&w=1200&auto=format&fit=crop",
+        caliber: "Calibre 4302",
+        material: "Stainless Steel",
+        complication: "Date, center seconds",
+        certificate: "Box and warranty card",
+        price: "HKD 255,000+",
+        story: "八角形錶圈、外露螺絲與 Grande Tapisserie 格紋共同構成 Royal Oak 的建築感，也讓它成為高級運動腕錶的重要象徵。"
+      },
+      {
+        id: 3,
+        category: "heritage",
+        brand: "Rolex",
+        title: "Daytona 116500LN",
+        image: "https://images.unsplash.com/photo-1600003014755-ba31aa59c4b6?q=80&w=1200&auto=format&fit=crop",
+        caliber: "Calibre 4130",
+        material: "Oystersteel & Cerachrom",
+        complication: "Chronograph, tachymeter",
+        certificate: "Full set, dated card",
+        price: "HKD 230,000+",
+        story: "陶瓷外圈與經典對比盤面讓 116500LN 具備強烈辨識度。其計時功能與 Daytona 歷史脈絡，使它長期保持市場關注。"
+      },
+      {
+        id: 4,
+        category: "sports",
+        brand: "Patek Philippe",
+        title: "Aquanaut 5167A",
+        image: "https://images.unsplash.com/photo-1594534432861-12f5a0928226?q=80&w=1200&auto=format&fit=crop",
+        caliber: "324 S C",
+        material: "Steel & composite strap",
+        complication: "Date, sweep seconds",
+        certificate: "Archive extract available",
+        price: "HKD 410,000+",
+        story: "Aquanaut 以更年輕的輪廓承接 Patek Philippe 運動系列精神，Tropical 錶帶與浮雕盤面形成獨特的日常高級感。"
+      },
+      {
+        id: 5,
+        category: "heritage",
+        brand: "Rolex",
+        title: "Submariner 126610LV",
+        image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=1200&auto=format&fit=crop",
+        caliber: "Calibre 3235",
+        material: "Oystersteel",
+        complication: "300m waterproof, date",
+        certificate: "Full set",
+        price: "HKD 105,000+",
+        story: "綠色 Cerachrom 字圈賦予 126610LV 清晰辨識度。作為潛水錶基準，它在耐用性、比例與日常佩戴之間取得穩定平衡。"
+      },
+      {
+        id: 6,
+        category: "grand",
+        brand: "Vacheron Constantin",
+        title: "Overseas Dual Time",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop",
+        caliber: "Calibre 5110 DT",
+        material: "Stainless Steel",
+        complication: "Dual time, day-night indicator",
+        certificate: "Complete set",
+        price: "HKD 185,000+",
+        story: "Overseas Dual Time 將旅行時間功能置入優雅運動錶殼，適合需要跨時區往返的藏家，也是日常與商務場合兼容的選擇。"
+      }
+    ];
+
+    const filters = [
+      { id: "all", key: "filter_all" },
+      { id: "grand", key: "filter_grand" },
+      { id: "sports", key: "filter_sports" },
+      { id: "heritage", key: "filter_heritage" }
+    ];
+
+    let currentLang = "zh";
+    let currentFilter = "all";
+
+    const byId = (id) => document.getElementById(id);
+    const t = (key) => i18n[currentLang][key] || key;
+
+    function refreshIcons() {
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function applyLanguage() {
+      document.documentElement.lang = currentLang === "zh" ? "zh-HK" : "en";
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        el.textContent = t(el.dataset.i18n);
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+        el.placeholder = t(el.dataset.i18nPlaceholder);
+      });
+      byId("langBtn").textContent = currentLang === "zh" ? "EN" : "ZH";
+      renderFilters();
+      renderProducts();
+      resetChat();
+      refreshIcons();
+    }
+
+    function renderFilters() {
+      const wrap = byId("filters");
+      wrap.innerHTML = "";
+      filters.forEach((filter) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `filter-btn${currentFilter === filter.id ? " active" : ""}`;
+        btn.textContent = t(filter.key);
+        btn.addEventListener("click", () => {
+          currentFilter = filter.id;
+          renderFilters();
+          renderProducts();
+        });
+        wrap.appendChild(btn);
+      });
+    }
+
+    function renderProducts() {
+      const grid = byId("productGrid");
+      grid.innerHTML = "";
+      products
+        .filter((product) => currentFilter === "all" || product.category === currentFilter)
+        .forEach((product) => {
+          const card = document.createElement("article");
+          card.className = "watch-card";
+          card.tabIndex = 0;
+          card.innerHTML = `
+            <div class="watch-image">
+              <img src="${product.image}" alt="${product.brand} ${product.title}">
+              <div class="watch-dossier"><span>View Dossier</span></div>
+            </div>
+            <div class="watch-body">
+              <span class="eyebrow">${product.brand}</span>
+              <h3>${product.title}</h3>
+              <div class="watch-meta"><span>${product.caliber}</span><span>·</span><span>${product.material}</span></div>
+              <div class="price">${product.price}</div>
+            </div>
+          `;
+          card.addEventListener("click", () => openModal(product.id));
+          card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") openModal(product.id);
+          });
+          grid.appendChild(card);
+        });
+    }
+
+    function openModal(id) {
+      const product = products.find((item) => item.id === id);
+      if (!product) return;
+      byId("modalImage").src = product.image;
+      byId("modalImage").alt = `${product.brand} ${product.title}`;
+      byId("modalBrand").textContent = product.brand;
+      byId("modalTitle").textContent = product.title;
+      byId("modalStory").textContent = product.story;
+
+      const rows = [
+        [t("dossier_caliber"), product.caliber],
+        [t("dossier_material"), product.material],
+        [t("dossier_complication"), product.complication],
+        [t("dossier_certificate"), product.certificate],
+        [t("dossier_price"), product.price]
+      ];
+      const dossier = byId("modalDossier");
+      dossier.innerHTML = "";
+      rows.forEach(([label, value]) => {
+        const row = document.createElement("div");
+        row.className = "dossier-row";
+        const b = document.createElement("b");
+        b.textContent = label;
+        const span = document.createElement("span");
+        span.textContent = value;
+        row.append(b, span);
+        dossier.appendChild(row);
+      });
+
+      const modal = byId("modal");
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      refreshIcons();
+    }
+
+    function closeModal() {
+      const modal = byId("modal");
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
+
+    function appendMessage(type, message) {
+      const item = document.createElement("div");
+      item.className = `msg ${type}`;
+      const name = document.createElement("strong");
+      name.textContent = type === "user" ? t("user_name") : t("bot_name");
+      const copy = document.createElement("span");
+      copy.textContent = message;
+      item.append(name, copy);
+      byId("chatLog").appendChild(item);
+      byId("chatLog").scrollTop = byId("chatLog").scrollHeight;
+      return item;
+    }
+
+    function resetChat() {
+      byId("chatLog").innerHTML = "";
+      appendMessage("bot", t("bot_welcome"));
+    }
+
+    async function sendConcierge(query) {
+      const cleaned = query.trim().slice(0, 80);
+      if (!cleaned) return;
+      appendMessage("user", cleaned);
+      const pending = appendMessage("bot", t("bot_thinking"));
+
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: cleaned,
+            lang: currentLang
+          })
+        });
+        const data = await response.json();
+        const reply = data.reply || t("bot_reply").replace("{query}", cleaned);
+        pending.querySelector("span").textContent = response.ok ? reply : `${reply}\n${t("bot_error")}`;
+      } catch (error) {
+        pending.querySelector("span").textContent = t("bot_reply").replace("{query}", cleaned);
+      }
+      byId("chatLog").scrollTop = byId("chatLog").scrollHeight;
+    }
+
+    byId("langBtn").addEventListener("click", () => {
+      currentLang = currentLang === "zh" ? "en" : "zh";
+      applyLanguage();
+    });
+
+    byId("menuBtn").addEventListener("click", () => {
+      byId("mobilePanel").classList.toggle("open");
+    });
+
+    byId("mobilePanel").addEventListener("click", (event) => {
+      if (event.target.tagName === "A") byId("mobilePanel").classList.remove("open");
+    });
+
+    byId("closeModal").addEventListener("click", closeModal);
+    byId("modal").addEventListener("click", (event) => {
+      if (event.target.id === "modal") closeModal();
+    });
+
+    byId("chatForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const input = byId("chatInput");
+      sendConcierge(input.value);
+      input.value = "";
+    });
+
+    document.querySelectorAll("[data-prompt]").forEach((btn) => {
+      btn.addEventListener("click", () => sendConcierge(btn.dataset.prompt));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeModal();
+    });
+
+    window.addEventListener("load", refreshIcons);
+    applyLanguage();
+  </script>
+</body>
+</html>
