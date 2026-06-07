@@ -1439,6 +1439,11 @@
     });
 
     document.addEventListener("keydown", (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.key.toLowerCase() === "a") {
+        event.preventDefault();
+        window.location.href = "/admin.html";
+        return;
+      }
       if (event.key === "Escape") closeModal();
     });
 
