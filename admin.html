@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXE MONTRE 管理后台</title>
+  <style>
+    :root {
+      --ink: #151515;
+      --muted: #6f6a61;
+      --gold: #997d4d;
+      --cream: #fbf9f6;
+      --line: rgba(153, 125, 77, .24);
+      --white: #fff;
+      --danger: #9f2b2b;
+      --green: #256d4c;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans TC", sans-serif;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    img { display: block; max-width: 100%; }
+
+    .shell {
+      width: min(1320px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 28px 0 60px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: .08em;
+      font-weight: 500;
+    }
+
+    .sub { color: var(--muted); margin-top: 8px; }
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 50px rgba(17, 17, 17, .06);
+      padding: 24px;
+    }
+
+    .login {
+      width: min(460px, calc(100% - 32px));
+      margin: 12vh auto 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      margin-top: 6px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      padding: 11px 12px;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    textarea { min-height: 110px; resize: vertical; line-height: 1.6; }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      min-height: 42px;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: var(--white);
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+
+    .btn.secondary { background: transparent; color: var(--gold); }
+    .btn.danger { border-color: var(--danger); background: var(--danger); }
+    .btn.dark { border-color: var(--ink); background: var(--ink); }
+
+    .table {
+      display: grid;
+      gap: 12px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 116px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      padding: 12px;
+      background: #fff;
+    }
+
+    .thumb {
+      width: 116px;
+      aspect-ratio: 4 / 3;
+      background: #eee;
+      object-fit: cover;
+      border: 1px solid rgba(0, 0, 0, .06);
+    }
+
+    .item h3 { margin: 0 0 6px; font-size: 17px; }
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 8px;
+      margin-left: 6px;
+      border: 1px solid var(--line);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .badge.sold { color: var(--danger); }
+    .badge.available { color: var(--green); }
+
+    .notice {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .error { color: var(--danger); }
+    .success { color: var(--green); }
+    .hidden { display: none; }
+
+    @media (max-width: 900px) {
+      .grid, .item { grid-template-columns: 1fr; }
+      .thumb { width: 100%; }
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <section class="login panel" id="loginPanel">
+    <h1>LUXE MONTRE</h1>
+    <p class="sub">管理后台登录</p>
+    <form id="loginForm">
+      <label>
+        后台密码
+        <input type="password" id="password" autocomplete="current-password" placeholder="请输入 ADMIN_PASSWORD">
+      </label>
+      <button class="btn" type="submit">登录</button>
+      <p class="notice">开发默认密码是 <b>admin123</b>。正式上线前必须在服务器环境变量里设置新的 <b>ADMIN_PASSWORD</b>。</p>
+      <p class="notice error" id="loginError"></p>
+    </form>
+  </section>
+
+  <main class="shell hidden" id="app">
+    <div class="topbar">
+      <div>
+        <h1>LUXE MONTRE 管理后台</h1>
+        <p class="sub">更新后前台刷新即可看到最新产品、价格和库存状态。</p>
+      </div>
+      <div class="actions">
+        <a class="btn secondary" href="/index.html" target="_blank" rel="noreferrer">查看官网</a>
+        <button class="btn dark" type="button" id="logoutBtn">退出</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="panel">
+        <h2 id="formTitle">新增腕表</h2>
+        <form id="productForm">
+          <input type="hidden" id="productId">
+          <div class="row">
+            <label>品牌<input id="brand" required placeholder="Patek Philippe"></label>
+            <label>型号名称<input id="title" required placeholder="Nautilus 5712/1A"></label>
+          </div>
+          <div class="row">
+            <label>参考编号<input id="reference" placeholder="5712/1A"></label>
+            <label>年份<input id="year" placeholder="2022"></label>
+          </div>
+          <label>图片 URL<input id="image" required placeholder="https://..."></label>
+          <div class="row">
+            <label>
+              分类
+              <select id="category">
+                <option value="grand">超級複雜功能</option>
+                <option value="sports">高雅運動系列</option>
+                <option value="heritage">經典傳承系列</option>
+              </select>
+            </label>
+            <label>
+              库存状态
+              <select id="stockStatus">
+                <option value="available">现货</option>
+                <option value="reserved">已预留</option>
+                <option value="sold">已售出</option>
+                <option value="hidden">隐藏不展示</option>
+              </select>
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              价格模式
+              <select id="priceMode">
+                <option value="price">显示价格</option>
+                <option value="inquiry">显示询价</option>
+              </select>
+            </label>
+            <label>价格<input id="price" placeholder="HKD 920,000+"></label>
+          </div>
+          <div class="row">
+            <label>机芯<input id="caliber" placeholder="240 PS IRM C LU"></label>
+            <label>材质<input id="material" placeholder="Stainless Steel"></label>
+          </div>
+          <label>复杂功能<input id="complication" placeholder="Moon phases, power reserve"></label>
+          <label>附件状态<input id="certificate" placeholder="Full set, original certificate"></label>
+          <label>腕表故事 / 备注<textarea id="story" placeholder="用于前台弹窗的鉴定故事、品相说明或销售备注"></textarea></label>
+          <label><input type="checkbox" id="featured" style="width:auto;margin-right:8px;"> 重点展示</label>
+          <div class="actions">
+            <button class="btn" type="submit">保存</button>
+            <button class="btn secondary" type="button" id="resetBtn">清空</button>
+          </div>
+          <p class="notice" id="formMessage"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>腕表库存</h2>
+        <div class="table" id="productList"></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    let products = [];
+
+    const fields = [
+      "brand", "title", "reference", "year", "image", "category", "stockStatus",
+      "priceMode", "price", "caliber", "material", "complication", "certificate", "story"
+    ];
+
+    const byId = (id) => document.getElementById(id);
+
+    async function api(path, options = {}) {
+      const response = await fetch(path, {
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          ...(options.headers || {})
+        }
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "Request failed");
+      return data;
+    }
+
+    async function checkSession() {
+      const data = await api("/api/admin/session");
+      if (data.authenticated) showApp();
+    }
+
+    async function showApp() {
+      byId("loginPanel").classList.add("hidden");
+      byId("app").classList.remove("hidden");
+      await loadProducts();
+    }
+
+    async function loadProducts() {
+      const data = await api("/api/admin/products");
+      products = data.products || [];
+      renderList();
+    }
+
+    function renderList() {
+      const wrap = byId("productList");
+      wrap.innerHTML = "";
+      if (!products.length) {
+        wrap.innerHTML = "<p class='notice'>暂无腕表。请先新增一只。</p>";
+        return;
+      }
+
+      products.forEach((product) => {
+        const item = document.createElement("article");
+        item.className = "item";
+        item.innerHTML = `
+          <img class="thumb" src="${escapeAttr(product.image)}" alt="">
+          <div>
+            <h3>${escapeHtml(product.brand)} ${escapeHtml(product.title)}
+              <span class="badge ${escapeAttr(product.stockStatus)}">${stockLabel(product.stockStatus)}</span>
+            </h3>
+            <div class="meta">
+              ${escapeHtml(product.reference || "-")} · ${escapeHtml(product.year || "-")} · ${escapeHtml(product.category)}
+              <br>${product.priceMode === "inquiry" ? "询价" : escapeHtml(product.price || "-")}
+              <br>${escapeHtml(product.certificate || "-")}
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn secondary" type="button" data-edit="${product.id}">编辑</button>
+            <button class="btn danger" type="button" data-delete="${product.id}">删除</button>
+          </div>
+        `;
+        wrap.appendChild(item);
+      });
+    }
+
+    function stockLabel(value) {
+      return {
+        available: "现货",
+        reserved: "已预留",
+        sold: "已售出",
+        hidden: "隐藏"
+      }[value] || "现货";
+    }
+
+    function collectForm() {
+      const product = {};
+      fields.forEach((field) => {
+        product[field] = byId(field).value.trim();
+      });
+      product.featured = byId("featured").checked;
+      return product;
+    }
+
+    function fillForm(product) {
+      byId("productId").value = product.id || "";
+      fields.forEach((field) => {
+        byId(field).value = product[field] || "";
+      });
+      byId("featured").checked = Boolean(product.featured);
+      byId("formTitle").textContent = product.id ? "编辑腕表" : "新增腕表";
+      byId("formMessage").textContent = "";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function resetForm() {
+      byId("productForm").reset();
+      byId("productId").value = "";
+      byId("category").value = "grand";
+      byId("stockStatus").value = "available";
+      byId("priceMode").value = "price";
+      byId("formTitle").textContent = "新增腕表";
+      byId("formMessage").textContent = "";
+    }
+
+    byId("loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      byId("loginError").textContent = "";
+      try {
+        await api("/api/admin/login", {
+          method: "POST",
+          body: JSON.stringify({ password: byId("password").value })
+        });
+        await showApp();
+      } catch (error) {
+        byId("loginError").textContent = "密码不正确。";
+      }
+    });
+
+    byId("logoutBtn").addEventListener("click", async () => {
+      await api("/api/admin/logout", { method: "POST", body: "{}" });
+      location.reload();
+    });
+
+    byId("productForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const id = byId("productId").value;
+      const product = collectForm();
+      const message = byId("formMessage");
+      message.className = "notice";
+      message.textContent = "保存中...";
+
+      try {
+        if (id) {
+          await api(`/api/admin/products/${id}`, { method: "PUT", body: JSON.stringify(product) });
+        } else {
+          await api("/api/admin/products", { method: "POST", body: JSON.stringify(product) });
+        }
+        message.className = "notice success";
+        message.textContent = "已保存。前台刷新后会显示最新数据。";
+        resetForm();
+        await loadProducts();
+      } catch (error) {
+        message.className = "notice error";
+        message.textContent = error.message;
+      }
+    });
+
+    byId("resetBtn").addEventListener("click", resetForm);
+
+    byId("productList").addEventListener("click", async (event) => {
+      const editId = event.target.dataset.edit;
+      const deleteId = event.target.dataset.delete;
+
+      if (editId) {
+        const product = products.find((item) => String(item.id) === String(editId));
+        if (product) fillForm(product);
+      }
+
+      if (deleteId && confirm("确定删除这只腕表吗？")) {
+        await api(`/api/admin/products/${deleteId}`, { method: "DELETE" });
+        await loadProducts();
+      }
+    });
+
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+      }[char]));
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value);
+    }
+
+    checkSession().catch(() => {});
+  </script>
+</body>
+</html>

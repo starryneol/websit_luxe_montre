@@ -1,10 +1,14 @@
 import { createReadStream, existsSync, readFileSync } from "node:fs";
+import { readFile, writeFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "node:http";
+import { randomUUID, timingSafeEqual } from "node:crypto";
 
 const root = fileURLToPath(new URL(".", import.meta.url));
 const port = Number(process.env.PORT || 8080);
+const productDbPath = join(root, "data", "products.json");
+const adminSessions = new Set();
 
 loadEnvFile();
 
@@ -37,12 +41,50 @@ const server = createServer(async (req, res) => {
         ok: true,
         provider: "openai",
         model: process.env.OPENAI_MODEL || "gpt-4.1-mini",
-        configured: Boolean(process.env.OPENAI_API_KEY)
+        configured: Boolean(process.env.OPENAI_API_KEY),
+        productDatabase: existsSync(productDbPath)
       });
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/products") {
+      return sendJson(res, 200, { products: await readProducts(false) });
     }
 
     if (req.method === "POST" && url.pathname === "/api/chat") {
       return handleChat(req, res);
+    }
+
+    if (url.pathname === "/api/admin/login" && req.method === "POST") {
+      return handleAdminLogin(req, res);
+    }
+
+    if (url.pathname === "/api/admin/session" && req.method === "GET") {
+      return sendJson(res, 200, { authenticated: isAdminRequest(req) });
+    }
+
+    if (url.pathname === "/api/admin/logout" && req.method === "POST") {
+      return handleAdminLogout(req, res);
+    }
+
+    if (url.pathname === "/api/admin/products" && req.method === "GET") {
+      if (!isAdminRequest(req)) return sendJson(res, 401, { error: "Unauthorized" });
+      return sendJson(res, 200, { products: await readProducts(true) });
+    }
+
+    if (url.pathname === "/api/admin/products" && req.method === "POST") {
+      if (!isAdminRequest(req)) return sendJson(res, 401, { error: "Unauthorized" });
+      return handleCreateProduct(req, res);
+    }
+
+    const productMatch = url.pathname.match(/^\/api\/admin\/products\/([^/]+)$/);
+    if (productMatch && req.method === "PUT") {
+      if (!isAdminRequest(req)) return sendJson(res, 401, { error: "Unauthorized" });
+      return handleUpdateProduct(req, res, productMatch[1]);
+    }
+
+    if (productMatch && req.method === "DELETE") {
+      if (!isAdminRequest(req)) return sendJson(res, 401, { error: "Unauthorized" });
+      return handleDeleteProduct(res, productMatch[1]);
     }
 
     if (req.method !== "GET" && req.method !== "HEAD") {
@@ -123,6 +165,116 @@ async function handleChat(req, res) {
   });
 }
 
+async function handleAdminLogin(req, res) {
+  const body = await readJsonBody(req);
+  const password = String(body.password || "");
+  const expectedPassword = process.env.ADMIN_PASSWORD || "admin123";
+
+  if (!safeEqual(password, expectedPassword)) {
+    return sendJson(res, 401, { error: "Invalid password" });
+  }
+
+  const token = randomUUID();
+  adminSessions.add(token);
+  res.writeHead(200, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Set-Cookie": `lm_admin=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=86400`
+  });
+  res.end(JSON.stringify({ ok: true }));
+}
+
+function handleAdminLogout(req, res) {
+  const token = getCookie(req, "lm_admin");
+  if (token) adminSessions.delete(token);
+  res.writeHead(200, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Set-Cookie": "lm_admin=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0"
+  });
+  res.end(JSON.stringify({ ok: true }));
+}
+
+async function handleCreateProduct(req, res) {
+  const body = await readJsonBody(req, 131_072);
+  const products = await readProducts(true);
+  const now = new Date().toISOString();
+  const nextId = products.reduce((max, product) => Math.max(max, Number(product.id) || 0), 0) + 1;
+  const product = normalizeProduct({ ...body, id: nextId, createdAt: now, updatedAt: now });
+  products.push(product);
+  await writeProducts(products);
+  return sendJson(res, 201, { product });
+}
+
+async function handleUpdateProduct(req, res, id) {
+  const body = await readJsonBody(req, 131_072);
+  const products = await readProducts(true);
+  const index = products.findIndex((product) => String(product.id) === String(id));
+  if (index === -1) return sendJson(res, 404, { error: "Product not found" });
+
+  const product = normalizeProduct({
+    ...products[index],
+    ...body,
+    id: products[index].id,
+    updatedAt: new Date().toISOString()
+  });
+  products[index] = product;
+  await writeProducts(products);
+  return sendJson(res, 200, { product });
+}
+
+async function handleDeleteProduct(res, id) {
+  const products = await readProducts(true);
+  const next = products.filter((product) => String(product.id) !== String(id));
+  if (next.length === products.length) return sendJson(res, 404, { error: "Product not found" });
+  await writeProducts(next);
+  return sendJson(res, 200, { ok: true });
+}
+
+async function readProducts(includeAll) {
+  const raw = await readFile(productDbPath, "utf8");
+  const products = JSON.parse(raw);
+  const normalized = Array.isArray(products) ? products.map(normalizeProduct) : [];
+
+  if (includeAll) return normalized;
+  return normalized.filter((product) => product.published !== false);
+}
+
+async function writeProducts(products) {
+  await writeFile(productDbPath, `${JSON.stringify(products, null, 2)}\n`);
+}
+
+function normalizeProduct(input) {
+  const priceMode = ["price", "inquiry"].includes(input.priceMode) ? input.priceMode : "price";
+  return {
+    id: input.id,
+    category: cleanChoice(input.category, ["grand", "sports", "heritage"], "heritage"),
+    brand: cleanText(input.brand, 80),
+    title: cleanText(input.title, 120),
+    reference: cleanText(input.reference, 80),
+    year: cleanText(input.year, 20),
+    image: cleanText(input.image, 1200),
+    caliber: cleanText(input.caliber, 120),
+    material: cleanText(input.material, 120),
+    complication: cleanText(input.complication, 180),
+    certificate: cleanText(input.certificate, 180),
+    price: priceMode === "inquiry" ? "Price on request" : cleanText(input.price, 80),
+    priceMode,
+    stockStatus: cleanChoice(input.stockStatus, ["available", "reserved", "sold", "hidden"], "available"),
+    published: input.published !== false && input.stockStatus !== "hidden",
+    featured: Boolean(input.featured),
+    story: cleanText(input.story, 1200),
+    createdAt: input.createdAt || null,
+    updatedAt: input.updatedAt || null
+  };
+}
+
+function cleanText(value, maxLength) {
+  return String(value || "").trim().slice(0, maxLength);
+}
+
+function cleanChoice(value, allowed, fallback) {
+  return allowed.includes(value) ? value : fallback;
+}
+
 function extractOutputText(data) {
   if (typeof data.output_text === "string") return data.output_text.trim();
   if (!Array.isArray(data.output)) return "";
@@ -160,12 +312,12 @@ function sendJson(res, status, data) {
   res.end(JSON.stringify(data));
 }
 
-function readJsonBody(req) {
+function readJsonBody(req, limit = 16_384) {
   return new Promise((resolve, reject) => {
     let raw = "";
     req.on("data", (chunk) => {
       raw += chunk;
-      if (raw.length > 16_384) {
+      if (raw.length > limit) {
         reject(new Error("Request body too large"));
         req.destroy();
       }
@@ -179,6 +331,29 @@ function readJsonBody(req) {
     });
     req.on("error", reject);
   });
+}
+
+function isAdminRequest(req) {
+  const token = getCookie(req, "lm_admin");
+  return Boolean(token && adminSessions.has(token));
+}
+
+function getCookie(req, name) {
+  const cookie = req.headers.cookie || "";
+  const parts = cookie.split(";").map((item) => item.trim());
+  for (const part of parts) {
+    const index = part.indexOf("=");
+    if (index === -1) continue;
+    if (part.slice(0, index) === name) return decodeURIComponent(part.slice(index + 1));
+  }
+  return "";
+}
+
+function safeEqual(a, b) {
+  const left = Buffer.from(String(a));
+  const right = Buffer.from(String(b));
+  if (left.length !== right.length) return false;
+  return timingSafeEqual(left, right);
 }
 
 function loadEnvFile() {

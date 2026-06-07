@@ -1064,7 +1064,14 @@
         dossier_material: "材質",
         dossier_complication: "功能",
         dossier_certificate: "附件",
-        dossier_price: "指引價"
+        dossier_price: "指引價",
+        dossier_year: "年份",
+        dossier_stock: "庫存",
+        stock_available: "現貨",
+        stock_reserved: "已預留",
+        stock_sold: "已售出",
+        stock_hidden: "隱藏",
+        price_inquiry: "詢價"
       },
       en: {
         nav_collection: "Collections",
@@ -1123,11 +1130,18 @@
         dossier_material: "Material",
         dossier_complication: "Function",
         dossier_certificate: "Set",
-        dossier_price: "Guide"
+        dossier_price: "Guide",
+        dossier_year: "Year",
+        dossier_stock: "Stock",
+        stock_available: "Available",
+        stock_reserved: "Reserved",
+        stock_sold: "Sold",
+        stock_hidden: "Hidden",
+        price_inquiry: "Price on request"
       }
     };
 
-    const products = [
+    const fallbackProducts = [
       {
         id: 1,
         category: "grand",
@@ -1215,6 +1229,7 @@
       { id: "heritage", key: "filter_heritage" }
     ];
 
+    let products = fallbackProducts;
     let currentLang = "zh";
     let currentFilter = "all";
 
@@ -1223,6 +1238,14 @@
 
     function refreshIcons() {
       if (window.lucide) window.lucide.createIcons();
+    }
+
+    function displayPrice(product) {
+      return product.priceMode === "inquiry" ? t("price_inquiry") : (product.price || t("price_inquiry"));
+    }
+
+    function displayStock(product) {
+      return t(`stock_${product.stockStatus || "available"}`);
     }
 
     function applyLanguage() {
@@ -1274,8 +1297,8 @@
             <div class="watch-body">
               <span class="eyebrow">${product.brand}</span>
               <h3>${product.title}</h3>
-              <div class="watch-meta"><span>${product.caliber}</span><span>·</span><span>${product.material}</span></div>
-              <div class="price">${product.price}</div>
+              <div class="watch-meta"><span>${product.reference || product.caliber}</span><span>·</span><span>${product.year || displayStock(product)}</span><span>·</span><span>${displayStock(product)}</span></div>
+              <div class="price">${displayPrice(product)}</div>
             </div>
           `;
           card.addEventListener("click", () => openModal(product.id));
@@ -1296,12 +1319,14 @@
       byId("modalStory").textContent = product.story;
 
       const rows = [
+        [t("dossier_year"), product.year],
         [t("dossier_caliber"), product.caliber],
         [t("dossier_material"), product.material],
         [t("dossier_complication"), product.complication],
         [t("dossier_certificate"), product.certificate],
-        [t("dossier_price"), product.price]
-      ];
+        [t("dossier_stock"), displayStock(product)],
+        [t("dossier_price"), displayPrice(product)]
+      ].filter((row) => row[1]);
       const dossier = byId("modalDossier");
       dossier.innerHTML = "";
       rows.forEach(([label, value]) => {
@@ -1371,6 +1396,19 @@
       byId("chatLog").scrollTop = byId("chatLog").scrollHeight;
     }
 
+    async function loadProducts() {
+      try {
+        const response = await fetch("/api/products");
+        const data = await response.json();
+        if (response.ok && Array.isArray(data.products)) {
+          products = data.products;
+        }
+      } catch (error) {
+        products = fallbackProducts;
+      }
+      renderProducts();
+    }
+
     byId("langBtn").addEventListener("click", () => {
       currentLang = currentLang === "zh" ? "en" : "zh";
       applyLanguage();
@@ -1406,6 +1444,7 @@
 
     window.addEventListener("load", refreshIcons);
     applyLanguage();
+    loadProducts();
   </script>
 </body>
 </html>

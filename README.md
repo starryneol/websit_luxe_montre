@@ -6,6 +6,8 @@ Single-page luxury watch salon website with a small Node.js backend for the AI c
 
 - `index.html` - Frontend website, product display, modal, language switch, chat UI.
 - `server.js` - Static file server plus `/api/chat` backend endpoint.
+- `admin.html` - Admin panel for adding and editing watch inventory.
+- `data/products.json` - Product database used by the frontend and admin panel.
 - `.env.example` - Environment variable template.
 - `package.json` - Node start scripts.
 
@@ -21,6 +23,7 @@ Edit `.env` and add your real OpenAI API key:
 OPENAI_API_KEY=sk-your_real_key
 OPENAI_MODEL=gpt-4.1-mini
 PORT=8080
+ADMIN_PASSWORD=change-this-admin-password
 ```
 
 Start the site:
@@ -34,6 +37,20 @@ Open:
 ```text
 http://localhost:8080/index.html
 ```
+
+Admin panel:
+
+```text
+http://localhost:8080/admin.html
+```
+
+During development, if `ADMIN_PASSWORD` is not configured, the fallback password is:
+
+```text
+admin123
+```
+
+Change `ADMIN_PASSWORD` before deployment.
 
 ## AI Concierge
 
@@ -58,5 +75,7 @@ This is a practical default for customer-service style responses because it is f
 - Keep API keys only in `.env` or deployment environment variables.
 - Do not put API keys in `index.html`.
 - Update `systemPrompt` in `server.js` to change the concierge tone or policy.
-- Update the `products` array in `index.html` to change watches and prices.
+- Use `/admin.html` to change watches, images, prices, accessory status, year, and stock status.
+- Product data is stored in `data/products.json`; the frontend reads it from `/api/products`.
+- Current image workflow uses image URLs. For production uploads, connect the admin panel to object storage such as S3, Cloudinary, or Supabase Storage.
 - Replace the WhatsApp placeholder link in `index.html` before publishing.
