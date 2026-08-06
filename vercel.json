@@ -12,6 +12,10 @@
     {
       "src": "data/products.json",
       "use": "@vercel/static"
+    },
+    {
+      "src": "assets/luxe-montre-storefront.jpg",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -26,6 +30,10 @@
     {
       "src": "/data/products.json",
       "dest": "/data/products.json"
+    },
+    {
+      "src": "/assets/luxe-montre-storefront.jpg",
+      "dest": "/assets/luxe-montre-storefront.jpg"
     }
   ]
 }

@@ -15,6 +15,7 @@ const requiredSnippets = [
   "In-Store Ready",
   "wa.me/852",
   "價格查詢",
+  "/assets/luxe-montre-storefront.jpg",
   "plateNumber",
   "appointmentType",
   "VIP 泊車用",
@@ -28,7 +29,24 @@ const requiredSnippets = [
   "mobile-market-dock",
   "mobile-cta-bar",
   "查看現貨",
-  "WhatsApp"
+  "WhatsApp",
+  'id="about"',
+  'href="#about"',
+  'data-i18n="nav_about"',
+  'data-about-list="services"',
+  'data-about-list="values"',
+  "尊時匯成立於 2013 年",
+  "核心業務與服務",
+  "核心價值與信念",
+  "頂級全新腕錶銷售",
+  "全球奢華腕錶代訂服務",
+  "專業鐘錶諮詢與資訊",
+  "長遠私人顧問服務",
+  "誠信至上",
+  "合理價格",
+  "優質與長遠服務",
+  "Founded in 2013, LUXE MONTRE specialises",
+  "Let Time Tell the Story"
 ];
 
 const removedFeatureSnippets = [
@@ -58,6 +76,17 @@ const conditionOptions = html.match(/const conditions = \[(?<body>[\s\S]*?)\n   
 assert(conditionOptions, "Missing condition filter configuration.");
 assert(!conditionOptions.includes('id: "mint"'), "Condition filter must not offer the Mint / 極佳品相 option.");
 assert(!html.includes('condition_mint:'), "Rendered condition labels must not expose Mint / 極佳品相.");
+
+const aboutMenuLinks = html.match(/href="#about"/g) || [];
+assert.equal(aboutMenuLinks.length, 2, "About Us must appear once in the desktop menu and once in the mobile menu.");
+
+const serviceList = html.match(/<div class="about-list" data-about-list="services">(?<body>[\s\S]*?)<\/div>\s*<\/section>/)?.groups?.body || "";
+const valueList = html.match(/<div class="about-list" data-about-list="values">(?<body>[\s\S]*?)<\/div>\s*<\/section>/)?.groups?.body || "";
+assert.equal((serviceList.match(/class="about-item"/g) || []).length, 4, "About Us must show four core services.");
+assert.equal((valueList.match(/class="about-item"/g) || []).length, 3, "About Us must show three core values.");
+assert(!html.includes('class="story-section"'), "The old philosophy story block must be replaced by About Us.");
+assert(html.indexOf('id="services"') < html.indexOf('id="about"'), "About Us must follow the watch and service sections.");
+assert(html.indexOf('id="about"') < html.indexOf('id="contact"'), "About Us must appear before contact details.");
 
 const mobileMenuLinkRule = html.match(/\.mobile-panel a\s*\{(?<body>[^}]+)\}/)?.groups?.body || "";
 assert(mobileMenuLinkRule, "Missing mobile menu link styles.");

@@ -317,54 +317,140 @@
       line-height: 2;
     }
 
-    .story-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, .92fr);
-      gap: 78px;
-      align-items: center;
-    }
-
-    .story-photo {
-      min-height: 620px;
+    .about-section {
       position: relative;
       overflow: hidden;
-      background: var(--paper);
+      border-top: 1px solid rgba(197, 160, 89, .16);
+      background:
+        radial-gradient(circle at 50% 0, rgba(197, 160, 89, .08), transparent 38%),
+        var(--ink-2);
+      color: var(--cream);
+      scroll-margin-top: 116px;
     }
 
-    .story-photo img {
-      width: 100%;
-      height: 100%;
-      min-height: 620px;
-      object-fit: cover;
-      filter: grayscale(.18) saturate(.9);
-    }
-
-    .stat-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      margin-top: 42px;
-      background: var(--line);
-    }
-
-    .stat {
-      background: var(--cream);
-      padding: 28px 22px;
-    }
-
-    .stat strong {
-      display: block;
-      color: var(--gold);
+    .about-section::before {
+      content: "LM";
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(197, 160, 89, .035);
       font-family: Cinzel, serif;
-      font-size: 1.9rem;
-      font-weight: 500;
-      margin-bottom: 6px;
+      font-size: clamp(12rem, 28vw, 28rem);
+      line-height: 1;
+      pointer-events: none;
     }
 
-    .stat span {
-      color: var(--muted);
+    .about-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .about-head h2 {
+      margin: 0;
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 500;
+      letter-spacing: .08em;
+    }
+
+    .about-rule {
+      display: block;
+      width: 56px;
+      height: 1px;
+      margin: 24px auto 0;
+      background: #997d4d;
+    }
+
+    .about-intro {
+      width: min(1040px, 100%);
+      margin: 42px auto 0;
+      color: rgba(239, 235, 225, .7);
       font-family: "Noto Serif TC", serif;
-      font-size: .78rem;
+      font-size: 1rem;
+      line-height: 2.05;
+    }
+
+    .about-intro p { margin: 0; }
+    .about-intro p + p { margin-top: 20px; }
+
+    .about-columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+      gap: 72px;
+      margin-top: 66px;
+      text-align: left;
+    }
+
+    .about-group {
+      padding: 0;
+    }
+
+    .about-group h3 {
+      margin: 0 0 30px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(153, 125, 77, .34);
+      color: var(--gold);
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+    }
+
+    .about-list {
+      display: grid;
+      gap: 26px;
+    }
+
+    .about-item {
+      position: relative;
+      padding-left: 24px;
+      color: rgba(239, 235, 225, .66);
+      font-family: "Noto Serif TC", serif;
+      font-size: .9rem;
+      line-height: 1.9;
+    }
+
+    .about-item::before {
+      content: "";
+      position: absolute;
+      top: .82em;
+      left: 0;
+      width: 8px;
+      height: 1px;
+      background: #997d4d;
+    }
+
+    .about-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--cream);
+      font-size: .96rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+    }
+
+    .about-item span { display: block; }
+
+    .about-divider {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 28px;
+      margin-top: 76px;
+      color: #997d4d;
+      font-family: Cinzel, "Noto Serif TC", serif;
+      font-size: .88rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+    }
+
+    .about-divider::before,
+    .about-divider::after {
+      content: "";
+      height: 1px;
+      background: rgba(153, 125, 77, .48);
     }
 
     .collection { background: var(--ink); }
@@ -1001,7 +1087,8 @@
 
     @media (max-width: 980px) {
       .nav { display: none; }
-      .story-grid, .modal-card, .filter-panel, .contact-grid { grid-template-columns: 1fr; }
+      .about-columns, .modal-card, .filter-panel, .contact-grid { grid-template-columns: 1fr; }
+      .about-columns { gap: 48px; }
       .product-grid, .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .watch-card:nth-child(2n) { margin-top: 0; }
       .modal-media { min-height: 340px; }
@@ -1045,8 +1132,8 @@
       .hero { order: 1; }
       .mobile-market-dock { order: 2; }
       .collection { order: 3; }
-      .story-section { order: 4; }
-      .services { order: 5; }
+      .services { order: 4; }
+      .about-section { order: 5; }
       .contact { order: 6; }
       .container { width: min(100% - 28px, 1180px); }
       .contact .container { width: min(100% - 28px, 1180px); }
@@ -1127,37 +1214,49 @@
         stroke-width: 1.7;
       }
       section { padding: 54px 0; }
-      .story-section { padding: 30px 0 34px; }
-      .story-photo { display: none; }
-      .story-grid { gap: 0; }
-      .story-grid .section-head {
-        margin-bottom: 18px;
-        gap: 0;
+      .about-section {
+        padding: 58px 0 50px;
+        scroll-margin-top: 72px;
       }
-      .story-grid .section-head .eyebrow,
-      .story-grid .section-head h2 { display: none; }
-      .story-grid .section-head p {
+      .about-section::before {
+        top: 12px;
+        font-size: 12rem;
+      }
+      .about-head h2 {
+        font-size: 2rem;
+        letter-spacing: .06em;
+      }
+      .about-rule { margin-top: 18px; }
+      .about-intro {
+        margin-top: 30px;
         font-size: .86rem;
-        line-height: 1.75;
+        line-height: 1.9;
+        text-align: left;
       }
-      .stat-strip, .product-grid, .service-grid, .form-grid { grid-template-columns: 1fr; }
-      .stat-strip {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        margin-top: 16px;
+      .about-intro p + p { margin-top: 16px; }
+      .about-columns {
+        gap: 38px;
+        margin-top: 42px;
       }
-      .stat {
-        padding: 14px 8px;
-        background: rgba(33, 24, 20, .78);
-        text-align: center;
+      .about-group h3 {
+        margin-bottom: 24px;
+        padding-bottom: 14px;
+        font-size: 1.02rem;
       }
-      .stat strong {
-        font-size: 1.15rem;
-        margin-bottom: 3px;
+      .about-list { gap: 22px; }
+      .about-item {
+        padding-left: 20px;
+        font-size: .82rem;
+        line-height: 1.82;
       }
-      .stat span {
-        font-size: .62rem;
-        line-height: 1.5;
+      .about-item strong { font-size: .9rem; }
+      .about-divider {
+        gap: 14px;
+        margin-top: 48px;
+        font-size: .7rem;
+        letter-spacing: .08em;
       }
+      .product-grid, .service-grid, .form-grid { grid-template-columns: 1fr; }
       .collection { padding-top: 38px; }
       .collection .section-head .eyebrow,
       .collection .section-head p { display: none; }
@@ -1348,6 +1447,7 @@
         </span>
       </a>
       <nav class="nav" aria-label="Primary">
+        <a href="#about" data-i18n="nav_about">關於我們</a>
         <a href="#collection" data-i18n="nav_collection">傳世珍藏</a>
         <a href="#services" data-i18n="nav_services">沙龍服務</a>
         <a href="#atelier" data-i18n="nav_atelier">匠心修復</a>
@@ -1359,6 +1459,7 @@
       </div>
     </div>
     <div class="mobile-panel" id="mobilePanel">
+      <a href="#about" data-i18n="nav_about">關於我們</a>
       <a href="#collection" data-i18n="nav_collection">傳世珍藏</a>
       <a href="#services" data-i18n="nav_services">沙龍服務</a>
       <a href="#atelier" data-i18n="nav_atelier">匠心修復</a>
@@ -1368,11 +1469,11 @@
 
   <main id="top">
     <section class="hero" aria-label="LUXE MONTRE hero">
-      <img class="hero-media" src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=2400&auto=format&fit=crop" alt="Luxury watches displayed in a salon">
+      <img class="hero-media" src="/assets/luxe-montre-storefront.jpg" alt="LUXE MONTRE 尊時匯門店外觀">
       <div class="hero-content">
         <span class="eyebrow" data-i18n="hero_kicker">Begin Your Own Tradition</span>
         <h1 data-i18n="hero_title">尊時匯</h1>
-        <p data-i18n="hero_copy">香港高級鐘錶官方沙龍，專注甄選 Patek Philippe、Rolex、Audemars Piguet 等全新名錶，並提供鑑定、保養與私人品鑑服務。</p>
+        <p data-i18n="hero_copy">香港高級鐘錶官方沙龍，專注甄選 Patek Philippe、Rolex、Richard Mille 等全新名錶，並提供全球代訂與私人品鑑服務。</p>
         <div class="button-row">
           <a class="btn" href="#collection"><i data-lucide="watch"></i><span data-i18n="hero_primary">尋覓傳世時計</span></a>
           <a class="btn secondary" href="#contact"><i data-lucide="calendar-check"></i><span data-i18n="hero_secondary">預約私人品鑑</span></a>
@@ -1384,26 +1485,6 @@
       <a href="#collection"><i data-lucide="search"></i><span>查看現貨</span></a>
       <a href="#contact"><i data-lucide="calendar-check"></i><span>預約</span></a>
     </nav>
-
-    <section class="story-section">
-      <div class="container story-grid">
-        <div class="story-photo">
-          <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?q=80&w=1400&auto=format&fit=crop" alt="Close up of a luxury chronograph watch">
-        </div>
-        <div>
-          <div class="section-head">
-            <span class="eyebrow" data-i18n="story_kicker">The Philosophy</span>
-            <h2 data-i18n="story_title">時間藝術的守護者</h2>
-            <p data-i18n="story_copy">每一枚複雜功能腕錶，都是機芯、材質、比例與歷史沉澱的共同證明。尊時匯以沙龍式陳列取代倉促交易，讓藏家在充分資訊與私密接待中完成選購、交流與傳承。</p>
-          </div>
-          <div class="stat-strip">
-            <div class="stat"><strong>24h</strong><span data-i18n="stat_1">行情初步回覆</span></div>
-            <div class="stat"><strong>100%</strong><span data-i18n="stat_2">原廠附件核驗</span></div>
-            <div class="stat"><strong>HK</strong><span data-i18n="stat_3">私人沙龍交收</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="collection" id="collection">
       <div class="container">
@@ -1467,6 +1548,39 @@
             <a class="btn secondary" href="#contact"><i data-lucide="arrow-right"></i><span data-i18n="service_cta">預約評估</span></a>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="container about-inner">
+        <div class="about-head">
+          <h2 data-i18n="about_title">關於我們</h2>
+          <span class="about-rule" aria-hidden="true"></span>
+        </div>
+        <div class="about-intro">
+          <p data-i18n="about_intro_1">尊時匯成立於 2013 年，專注於全球頂級全新奢華腕錶的銷售與代訂服務。我們甄選全球最具代表性的頂級品牌，包括 Patek Philippe（百達翡麗）、Rolex（勞力士）及 Richard Mille 等全新奢華腕錶。</p>
+          <p data-i18n="about_intro_2">憑藉多年的產業經驗與深厚的鐘錶知識，我們致力為鐘錶收藏家與愛好者提供全方位的專業資訊、市場趨勢分析與客製化尋錶建議。</p>
+        </div>
+        <div class="about-columns">
+          <section class="about-group">
+            <h3 data-i18n="about_services_title">核心業務與服務</h3>
+            <div class="about-list" data-about-list="services">
+              <div class="about-item"><strong data-i18n="about_service_1_title">頂級全新腕錶銷售</strong><span data-i18n="about_service_1_copy">專營 Patek Philippe、Rolex、Richard Mille 等國際頂尖品牌的全新腕錶現貨銷售。</span></div>
+              <div class="about-item"><strong data-i18n="about_service_2_title">全球奢華腕錶代訂服務</strong><span data-i18n="about_service_2_copy">為滿足客戶對特定珍稀或熱門錶款的需求，我們提供專業的全球代訂服務，協助客戶精準尋找並引進心儀的全新高級腕錶。</span></div>
+              <div class="about-item"><strong data-i18n="about_service_3_title">專業鐘錶諮詢與資訊</strong><span data-i18n="about_service_3_copy">即時掌握全球腕錶市場動態，提供客觀、專業的錶款鑑賞建議、市場價格走勢及收藏規劃建議。</span></div>
+              <div class="about-item"><strong data-i18n="about_service_4_title">長遠私人顧問服務</strong><span data-i18n="about_service_4_copy">以客戶需要為核心，提供從初步諮詢、深入溝通、訂購引進到售後支援的一站式貼心服務，成為客戶身邊值得信賴的私人鐘錶顧問。</span></div>
+            </div>
+          </section>
+          <section class="about-group">
+            <h3 data-i18n="about_values_title">核心價值與信念</h3>
+            <div class="about-list" data-about-list="values">
+              <div class="about-item"><strong data-i18n="about_value_1_title">誠信至上</strong><span data-i18n="about_value_1_copy">堅持誠信經營與透明流程，確保每一枚腕錶均為正品且來源明確，為客戶締造安心的交易體驗。</span></div>
+              <div class="about-item"><strong data-i18n="about_value_2_title">合理價格</strong><span data-i18n="about_value_2_copy">緊密連結全球鐘錶市場脈動，提供貼近市場趨勢的合理價格，讓客戶獲得理想價值。</span></div>
+              <div class="about-item"><strong data-i18n="about_value_3_title">優質與長遠服務</strong><span data-i18n="about_value_3_copy">我們不只重視單次交易，更珍惜與客戶建立長遠的夥伴關係，以細緻服務陪伴客戶的鐘錶收藏之旅。</span></div>
+            </div>
+          </section>
+        </div>
+        <div class="about-divider"><span data-i18n="about_divider">讓時間，說故事</span></div>
       </div>
     </section>
 
@@ -1554,21 +1668,36 @@
   <script>
     const i18n = {
       zh: {
+        nav_about: "關於我們",
         nav_collection: "傳世珍藏",
         nav_services: "沙龍服務",
         nav_atelier: "匠心修復",
         nav_contact: "預約品鑑",
         hero_kicker: "Begin Your Own Tradition",
         hero_title: "尊時匯",
-        hero_copy: "香港高級鐘錶官方沙龍，專注甄選 Patek Philippe、Rolex、Audemars Piguet 等全新名錶，並提供鑑定、保養與私人品鑑服務。",
+        hero_copy: "香港高級鐘錶官方沙龍，專注甄選 Patek Philippe、Rolex、Richard Mille 等全新名錶，並提供全球代訂與私人品鑑服務。",
         hero_primary: "尋覓傳世時計",
         hero_secondary: "預約私人品鑑",
-        story_kicker: "The Philosophy",
-        story_title: "時間藝術的守護者",
-        story_copy: "每一枚複雜功能腕錶，都是機芯、材質、比例與歷史沉澱的共同證明。尊時匯以沙龍式陳列取代倉促交易，讓藏家在充分資訊與私密接待中完成選購、交流與傳承。",
-        stat_1: "行情初步回覆",
-        stat_2: "原廠附件核驗",
-        stat_3: "私人沙龍交收",
+        about_title: "關於我們",
+        about_intro_1: "尊時匯成立於 2013 年，專注於全球頂級全新奢華腕錶的銷售與代訂服務。我們甄選全球最具代表性的頂級品牌，包括 Patek Philippe（百達翡麗）、Rolex（勞力士）及 Richard Mille 等全新奢華腕錶。",
+        about_intro_2: "憑藉多年的產業經驗與深厚的鐘錶知識，我們致力為鐘錶收藏家與愛好者提供全方位的專業資訊、市場趨勢分析與客製化尋錶建議。",
+        about_services_title: "核心業務與服務",
+        about_service_1_title: "頂級全新腕錶銷售",
+        about_service_1_copy: "專營 Patek Philippe、Rolex、Richard Mille 等國際頂尖品牌的全新腕錶現貨銷售。",
+        about_service_2_title: "全球奢華腕錶代訂服務",
+        about_service_2_copy: "為滿足客戶對特定珍稀或熱門錶款的需求，我們提供專業的全球代訂服務，協助客戶精準尋找並引進心儀的全新高級腕錶。",
+        about_service_3_title: "專業鐘錶諮詢與資訊",
+        about_service_3_copy: "即時掌握全球腕錶市場動態，提供客觀、專業的錶款鑑賞建議、市場價格走勢及收藏規劃建議。",
+        about_service_4_title: "長遠私人顧問服務",
+        about_service_4_copy: "以客戶需要為核心，提供從初步諮詢、深入溝通、訂購引進到售後支援的一站式貼心服務，成為客戶身邊值得信賴的私人鐘錶顧問。",
+        about_values_title: "核心價值與信念",
+        about_value_1_title: "誠信至上",
+        about_value_1_copy: "堅持誠信經營與透明流程，確保每一枚腕錶均為正品且來源明確，為客戶締造安心的交易體驗。",
+        about_value_2_title: "合理價格",
+        about_value_2_copy: "緊密連結全球鐘錶市場脈動，提供貼近市場趨勢的合理價格，讓客戶獲得理想價值。",
+        about_value_3_title: "優質與長遠服務",
+        about_value_3_copy: "我們不只重視單次交易，更珍惜與客戶建立長遠的夥伴關係，以細緻服務陪伴客戶的鐘錶收藏之旅。",
+        about_divider: "讓時間，說故事",
         collection_kicker: "The Grand Collection Salons",
         collection_title: "傳世現貨珍藏",
         collection_copy: "按複雜功能、運動優雅與經典傳承分類陳列，每枚腕錶皆附鑑定檔案、附件狀態與預約賞錶入口。",
@@ -1630,21 +1759,36 @@
         toast_stripe: "Stripe 按金鎖定流程已啟動，客服確認後前台將顯示 24 小時保留中。"
       },
       en: {
+        nav_about: "About Us",
         nav_collection: "Collections",
         nav_services: "Salon Services",
         nav_atelier: "Restoration",
         nav_contact: "Book a Viewing",
         hero_kicker: "Begin Your Own Tradition",
         hero_title: "LUXE MONTRE",
-        hero_copy: "A Hong Kong haute horology salon focused on new Patek Philippe, Rolex, Audemars Piguet and other exceptional timepieces, with authentication, care and private appointments.",
+        hero_copy: "A Hong Kong haute horology salon focused on new Patek Philippe, Rolex and Richard Mille timepieces, with global sourcing and private appointments.",
         hero_primary: "Explore Timepieces",
         hero_secondary: "Book a Private Viewing",
-        story_kicker: "The Philosophy",
-        story_title: "Guardians of Horological Art",
-        story_copy: "Every complicated watch carries movement architecture, material discipline, proportion and history. LUXE MONTRE replaces rushed transactions with salon presentation, verified information and discreet collector service.",
-        stat_1: "Market response",
-        stat_2: "Accessory review",
-        stat_3: "Salon handover",
+        about_title: "About Us",
+        about_intro_1: "Founded in 2013, LUXE MONTRE specialises in the sale and global sourcing of new luxury timepieces. We curate watches from the world’s most distinguished maisons, including Patek Philippe, Rolex and Richard Mille.",
+        about_intro_2: "Drawing on years of industry experience and in-depth horological knowledge, we provide collectors and enthusiasts with professional information, market insights and personalised watch-sourcing guidance.",
+        about_services_title: "Core Business and Services",
+        about_service_1_title: "New Luxury Timepiece Sales",
+        about_service_1_copy: "We specialise in new, in-stock watches from Patek Philippe, Rolex, Richard Mille and other leading international maisons.",
+        about_service_2_title: "Global Watch Sourcing",
+        about_service_2_copy: "For rare or highly sought-after references, our global sourcing service helps clients locate and secure the new luxury timepiece they are looking for.",
+        about_service_3_title: "Professional Watch Advisory",
+        about_service_3_copy: "We monitor global watch-market developments and provide objective guidance on references, market-price trends and collection planning.",
+        about_service_4_title: "Long-Term Private Advisory",
+        about_service_4_copy: "From the first enquiry and detailed consultation to sourcing, delivery and after-sales support, we provide a thoughtful one-stop service as a trusted private watch adviser.",
+        about_values_title: "Core Values",
+        about_value_1_title: "Integrity First",
+        about_value_1_copy: "We uphold transparent processes and verify that every timepiece is authentic and clearly sourced, creating a reassuring purchasing experience.",
+        about_value_2_title: "Fair Pricing",
+        about_value_2_copy: "By staying closely connected to the global watch market, we offer pricing aligned with current market conditions and long-term client value.",
+        about_value_3_title: "Quality and Lasting Service",
+        about_value_3_copy: "We value enduring client relationships beyond a single transaction and provide attentive support throughout each collector’s horological journey.",
+        about_divider: "Let Time Tell the Story",
         collection_kicker: "The Grand Collection Salons",
         collection_title: "Available Timepieces",
         collection_copy: "Browse by grand complications, elegant sports and iconic heritage. Each timepiece includes a dossier, accessory status and private viewing access.",
