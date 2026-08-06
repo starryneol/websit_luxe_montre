@@ -110,17 +110,25 @@
     .brand-mark {
       width: 56px;
       height: 56px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      border-radius: 50%;
-      font-family: Cinzel, serif;
-      font-size: 1.45rem;
-      transition: background .35s ease, color .35s ease;
+      flex: 0 0 auto;
+      display: block;
+      overflow: hidden;
+      border: 0;
+      background: transparent;
     }
 
-    .brand:hover .brand-mark { background: var(--gold); color: var(--white); }
+    .brand-mark-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 14px rgba(197, 160, 89, .12));
+      transition: transform .35s ease, filter .35s ease;
+    }
+
+    .brand:hover .brand-mark-image {
+      transform: scale(1.04);
+      filter: drop-shadow(0 6px 18px rgba(197, 160, 89, .3));
+    }
     .brand-name {
       display: block;
       font-family: Cinzel, serif;
@@ -156,30 +164,47 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 10px;
     }
 
-    .icon-btn {
+    .icon-btn,
+    .lang-btn {
       width: 52px;
       height: 52px;
       display: inline-grid;
       place-items: center;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .45);
-      color: var(--ink);
-      transition: border-color .25s ease, color .25s ease, background .25s ease;
+      border: 1px solid rgba(197, 160, 89, .38);
+      border-radius: 2px;
+      background: rgba(18, 14, 11, .42);
+      color: var(--cream);
+      transition: border-color .25s ease, color .25s ease, background .25s ease, transform .25s ease;
     }
 
-    .icon-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--ink-2); }
+    .icon-btn:hover,
+    .lang-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(197, 160, 89, .1);
+    }
+
+    .icon-btn:focus-visible,
+    .lang-btn:focus-visible {
+      outline: 1px solid var(--gold);
+      outline-offset: 4px;
+    }
+
     .lang-btn {
       width: 60px;
-      height: 52px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .45);
-      color: var(--ink);
       font-family: Cinzel, serif;
       font-size: .84rem;
       letter-spacing: .12em;
+    }
+
+    .menu-btn svg {
+      width: 23px;
+      height: 23px;
+      stroke-width: 1.45;
     }
 
     .mobile-panel {
@@ -1106,7 +1131,6 @@
       .brand-mark {
         width: 64px;
         height: 64px;
-        font-size: 1.65rem;
       }
       .brand-name { font-size: 1.68rem; }
       .brand-sub { font-size: .74rem; }
@@ -1138,11 +1162,13 @@
       .container { width: min(100% - 28px, 1180px); }
       .contact .container { width: min(100% - 28px, 1180px); }
       .nav-wrap { height: 72px; }
-      .brand-mark { width: 36px; height: 36px; }
+      .brand { gap: 12px; }
+      .brand-mark { width: 40px; height: 40px; }
       .brand-name { font-size: .93rem; letter-spacing: .09em; }
       .brand-sub { display: none; }
-      .lang-btn { width: 58px; height: 52px; }
-      .icon-btn { width: 52px; height: 52px; }
+      .nav-actions { gap: 8px; }
+      .lang-btn { width: 48px; height: 44px; font-size: .76rem; }
+      .nav-actions .icon-btn { width: 44px; height: 44px; }
       .hero {
         min-height: 62vh;
         align-items: end;
@@ -1440,7 +1466,9 @@
   <header class="header">
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="LUXE MONTRE 尊時匯">
-        <span class="brand-mark">L</span>
+        <span class="brand-mark">
+          <img class="brand-mark-image" src="/assets/luxe-montre-emblem.png" alt="LUXE MONTRE 尊時匯徽章">
+        </span>
         <span>
           <span class="brand-name">LUXE MONTRE</span>
           <span class="brand-sub">Geneva Standard · Hong Kong</span>

@@ -16,6 +16,10 @@
     {
       "src": "assets/luxe-montre-storefront.jpg",
       "use": "@vercel/static"
+    },
+    {
+      "src": "assets/luxe-montre-emblem.png",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -34,6 +38,10 @@
     {
       "src": "/assets/luxe-montre-storefront.jpg",
       "dest": "/assets/luxe-montre-storefront.jpg"
+    },
+    {
+      "src": "/assets/luxe-montre-emblem.png",
+      "dest": "/assets/luxe-montre-emblem.png"
     }
   ]
 }

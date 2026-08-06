@@ -46,7 +46,12 @@ const requiredSnippets = [
   "合理價格",
   "優質與長遠服務",
   "Founded in 2013, LUXE MONTRE specialises",
-  "Let Time Tell the Story"
+  "Let Time Tell the Story",
+  'src="/assets/luxe-montre-emblem.png"',
+  'alt="LUXE MONTRE 尊時匯徽章"',
+  'aria-label="Switch language"',
+  'aria-label="Open menu"',
+  'class="brand-mark-image"'
 ];
 
 const removedFeatureSnippets = [
@@ -87,6 +92,7 @@ assert.equal((valueList.match(/class="about-item"/g) || []).length, 3, "About Us
 assert(!html.includes('class="story-section"'), "The old philosophy story block must be replaced by About Us.");
 assert(html.indexOf('id="services"') < html.indexOf('id="about"'), "About Us must follow the watch and service sections.");
 assert(html.indexOf('id="about"') < html.indexOf('id="contact"'), "About Us must appear before contact details.");
+assert(!html.includes('<span class="brand-mark">L</span>'), "The placeholder L badge must be replaced by the supplied emblem.");
 
 const mobileMenuLinkRule = html.match(/\.mobile-panel a\s*\{(?<body>[^}]+)\}/)?.groups?.body || "";
 assert(mobileMenuLinkRule, "Missing mobile menu link styles.");
