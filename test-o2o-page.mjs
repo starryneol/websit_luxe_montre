@@ -51,7 +51,9 @@ const requiredSnippets = [
   'alt="LUXE MONTRE 尊時匯徽章"',
   'aria-label="Switch language"',
   'aria-label="Open menu"',
-  'class="brand-mark-image"'
+  'class="brand-mark-image"',
+  '<span class="brand-cn">尊時匯</span>',
+  '<span class="brand-place">· HONG KONG</span>'
 ];
 
 const removedFeatureSnippets = [
@@ -93,6 +95,7 @@ assert(!html.includes('class="story-section"'), "The old philosophy story block 
 assert(html.indexOf('id="services"') < html.indexOf('id="about"'), "About Us must follow the watch and service sections.");
 assert(html.indexOf('id="about"') < html.indexOf('id="contact"'), "About Us must appear before contact details.");
 assert(!html.includes('<span class="brand-mark">L</span>'), "The placeholder L badge must be replaced by the supplied emblem.");
+assert(!html.includes("Geneva Standard · Hong Kong"), "The old subtitle must make room for the Chinese brand name.");
 
 const mobileMenuLinkRule = html.match(/\.mobile-panel a\s*\{(?<body>[^}]+)\}/)?.groups?.body || "";
 assert(mobileMenuLinkRule, "Missing mobile menu link styles.");

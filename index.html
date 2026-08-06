@@ -138,13 +138,26 @@
     }
 
     .brand-sub {
-      display: block;
-      margin-top: 7px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      line-height: 1;
+    }
+
+    .brand-cn {
+      color: var(--gold);
+      font-family: "Noto Serif TC", serif;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+    }
+
+    .brand-place {
       color: var(--muted);
       font-family: Cinzel, serif;
-      font-size: .68rem;
-      letter-spacing: .17em;
-      text-transform: uppercase;
+      font-size: .62rem;
+      letter-spacing: .16em;
     }
 
     .nav {
@@ -1133,7 +1146,8 @@
         height: 64px;
       }
       .brand-name { font-size: 1.68rem; }
-      .brand-sub { font-size: .74rem; }
+      .brand-cn { font-size: .78rem; }
+      .brand-place { font-size: .66rem; }
       .nav {
         gap: 54px;
         font-size: .9rem;
@@ -1165,7 +1179,9 @@
       .brand { gap: 12px; }
       .brand-mark { width: 40px; height: 40px; }
       .brand-name { font-size: .93rem; letter-spacing: .09em; }
-      .brand-sub { display: none; }
+      .brand-sub { margin-top: 4px; }
+      .brand-cn { font-size: .6rem; letter-spacing: .18em; }
+      .brand-place { display: none; }
       .nav-actions { gap: 8px; }
       .lang-btn { width: 48px; height: 44px; font-size: .76rem; }
       .nav-actions .icon-btn { width: 44px; height: 44px; }
@@ -1471,7 +1487,7 @@
         </span>
         <span>
           <span class="brand-name">LUXE MONTRE</span>
-          <span class="brand-sub">Geneva Standard · Hong Kong</span>
+          <span class="brand-sub"><span class="brand-cn">尊時匯</span><span class="brand-place">· HONG KONG</span></span>
         </span>
       </a>
       <nav class="nav" aria-label="Primary">
