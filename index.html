@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LUXE MONTRE 尊時匯，香港 O2O 數位奢華鐘錶平台，提供地舖現貨、POA 價格查詢、寄賣收購、以錶換錶與 AI 資產管家。">
-  <title>LUXE MONTRE 尊時匯 | O2O 數位奢華鐘錶平台</title>
+  <meta name="description" content="LUXE MONTRE 尊時匯，香港高級鐘錶官方沙龍，專注甄選全新名錶、地舖現貨、POA 價格查詢與私人品鑑。">
+  <title>LUXE MONTRE 尊時匯 | 香港全新高級鐘錶沙龍</title>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "JewelryStore",
       "name": "LUXE MONTRE 尊時匯",
-      "description": "香港 O2O 數位奢華鐘錶平台，提供地舖現貨、寄賣收購、以錶換錶與私人沙龍服務。",
+      "description": "香港高級鐘錶官方沙龍，專注甄選全新名錶、地舖現貨與私人品鑑服務。",
       "image": "https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=2400&auto=format&fit=crop",
       "telephone": "+852-1234-5678",
       "priceRange": "$$$$",
@@ -724,124 +724,11 @@
       line-height: 2;
     }
 
-    .concierge-grid {
-      display: grid;
-      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
-      gap: 64px;
-      align-items: center;
-    }
-
-    .chat-shell {
-      background: var(--ink);
-      padding: 8px;
-      box-shadow: var(--shadow);
-    }
-
-    .chat {
-      height: 560px;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid rgba(153, 125, 77, .38);
-      background: #151515;
-      color: var(--cream);
-    }
-
-    .chat-head {
-      min-height: 58px;
-      padding: 0 22px;
-      border-bottom: 1px solid rgba(153, 125, 77, .22);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .chat-head span {
-      color: var(--gold);
-      font-family: Cinzel, serif;
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .chat-log {
-      flex: 1;
-      overflow-y: auto;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .msg {
-      max-width: 82%;
-      font-family: "Noto Serif TC", serif;
-      font-size: .9rem;
-      line-height: 1.9;
-    }
-
-    .msg strong {
-      display: block;
-      margin-bottom: 5px;
-      color: rgba(153, 125, 77, .82);
-      font-family: Cinzel, serif;
-      font-size: .58rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .msg.user {
-      align-self: flex-end;
-      color: var(--gold);
-      text-align: right;
-    }
-
-    .msg.bot { align-self: flex-start; color: var(--cream); }
-    .chat-form {
-      padding: 18px;
-      border-top: 1px solid rgba(153, 125, 77, .22);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-    }
-
-    .chat-form input {
-      min-width: 0;
-      border: 1px solid rgba(153, 125, 77, .34);
-      background: transparent;
-      color: var(--cream);
-      padding: 0 14px;
-      height: 46px;
-      outline: none;
-      font-family: "Noto Serif TC", serif;
-    }
-
-    .chat-form input:focus { border-color: var(--gold); }
-    .quick-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
-    .quick-actions .btn { min-height: 44px; }
-
-    .trade {
-      background: #211814;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .trade .container,
-    .portfolio .container,
     .contact .container {
       width: min(1500px, calc(100% - 120px));
     }
 
-    .trade-grid,
-    .contact-grid,
-    .portfolio-grid {
+    .contact-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 56px;
@@ -894,324 +781,6 @@
     }
 
     .form-grid .full { grid-column: 1 / -1; }
-
-    .sell-form {
-      flex: 1;
-      grid-template-rows: auto auto auto auto 1fr auto;
-      align-content: start;
-    }
-
-    .sell-form .year-field,
-    .sell-form .file-field {
-      grid-column: 1 / -1;
-    }
-
-    .sell-form .accessory-block {
-      align-self: start;
-    }
-
-    .sell-form .form-action {
-      align-self: end;
-      grid-row: 6;
-    }
-
-    .trade-panel-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .trade-panel-body .trade-result {
-      margin-top: 42px;
-    }
-
-    .trade-panel-body .form-action {
-      margin-top: auto;
-    }
-
-    .accessory-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .accessory-row label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--cream);
-      font-family: "Noto Serif TC", serif;
-      font-size: .84rem;
-    }
-
-    .accessory-row input { accent-color: var(--gold); }
-
-    .helper-text {
-      margin-top: 8px;
-      color: var(--muted);
-      font-family: "Noto Serif TC", serif;
-      font-size: .78rem;
-      line-height: 1.7;
-    }
-
-    .file-upload-row {
-      min-height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      border: 0;
-      border-bottom: 1px solid rgba(197, 160, 89, .3);
-      background: transparent;
-      padding: 0;
-      transition: border-color .25s ease;
-    }
-
-    .file-upload-row:hover {
-      border-color: rgba(197, 160, 89, .58);
-    }
-
-    .file-upload-row input[type="file"] {
-      position: absolute;
-      inline-size: 1px;
-      block-size: 1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
-
-    .file-trigger {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-      color: rgba(197, 160, 89, .92);
-      font-family: "Noto Serif TC", serif;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: .04em;
-      cursor: pointer;
-    }
-
-    .file-trigger svg {
-      width: 22px;
-      height: 22px;
-      color: var(--gold);
-      stroke-width: 1.5;
-      flex: 0 0 auto;
-    }
-
-    .file-trigger:hover { color: var(--gold); }
-
-    .file-name {
-      min-width: 0;
-      color: rgba(239, 235, 225, .46);
-      font-family: "Noto Serif TC", serif;
-      font-size: .96rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      text-align: right;
-    }
-
-    .trade-result {
-      margin: 28px 0;
-      padding: 28px 32px 32px;
-      border: 1px solid rgba(197, 160, 89, .2);
-      background: rgba(33, 24, 20, .54);
-      text-align: center;
-    }
-
-    .trade-result span {
-      display: block;
-      color: var(--muted);
-      font-family: Cinzel, "Noto Serif TC", serif;
-      font-size: .64rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .trade-result strong {
-      color: var(--gold);
-      font-family: Cinzel, serif;
-      font-size: 2rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-    }
-
-    .luxury-action {
-      width: 100%;
-      min-height: 58px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      border: 1px solid rgba(197, 160, 89, .55);
-      background: var(--gold);
-      color: var(--ink);
-      font-family: Cinzel, "Noto Serif TC", serif;
-      font-size: .74rem;
-      font-weight: 800;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      transition: border-color .25s ease, background .25s ease, color .25s ease, transform .25s ease;
-    }
-
-    .luxury-action svg {
-      width: 22px;
-      height: 22px;
-      stroke-width: 1.7;
-    }
-
-    .luxury-action:hover {
-      transform: translateY(-1px);
-      background: #d1ad63;
-      border-color: #d1ad63;
-    }
-
-    .luxury-action.subtle {
-      min-height: 54px;
-      background: rgba(18, 14, 11, .44);
-      color: rgba(239, 235, 225, .72);
-      border-color: rgba(197, 160, 89, .24);
-    }
-
-    .luxury-action.subtle:hover {
-      background: rgba(197, 160, 89, .12);
-      color: var(--gold);
-      border-color: rgba(197, 160, 89, .5);
-    }
-
-    .portfolio {
-      background: var(--ink);
-    }
-
-    .portfolio-grid { grid-template-columns: minmax(0, 1.45fr) minmax(360px, .95fr); }
-
-    .portfolio-metrics {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin-bottom: 34px;
-    }
-
-    .portfolio-card {
-      min-height: 190px;
-      border: 1px solid var(--line);
-      background: rgba(33, 24, 20, .72);
-      padding: 32px;
-    }
-
-    .portfolio-card b {
-      display: block;
-      color: var(--muted);
-      font-family: Cinzel, "Noto Serif TC", serif;
-      font-size: .66rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .portfolio-card strong {
-      display: block;
-      color: var(--gold);
-      font-family: Cinzel, serif;
-      font-size: 2rem;
-      font-weight: 500;
-      margin-bottom: 10px;
-    }
-
-    .chart-wrap {
-      height: 280px;
-      border: 1px solid var(--line);
-      background: rgba(33, 24, 20, .72);
-      padding: 26px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .chart-wrap canvas {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .chart-tag {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      border: 1px solid rgba(197, 160, 89, .4);
-      color: var(--gold);
-      background: rgba(18, 14, 11, .8);
-      padding: 7px 10px;
-      font-family: Cinzel, serif;
-      font-size: .56rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .passport {
-      margin-top: 34px;
-      border: 1px solid var(--line);
-      background: rgba(18, 14, 11, .62);
-      padding: 22px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .asset-advisor {
-      min-height: 520px;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid var(--line);
-      background: rgba(33, 24, 20, .72);
-      padding: 34px;
-    }
-
-    .asset-advisor h3 {
-      margin: 0 0 26px;
-      color: var(--gold);
-      text-align: center;
-      font-family: Cinzel, "Noto Serif TC", serif;
-      font-size: 1.45rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-    }
-
-    .asset-advisor .chat-log {
-      padding: 0;
-      min-height: 320px;
-      border: 0;
-    }
-
-    .asset-advisor .chat-form {
-      margin-top: auto;
-      padding: 18px 0 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .asset-advisor .chat-form input {
-      min-width: 0;
-      border: 1px solid rgba(197, 160, 89, .34);
-      background: rgba(18, 14, 11, .62);
-      color: var(--cream);
-      padding: 0 14px;
-      height: 46px;
-      outline: none;
-      font-family: "Noto Serif TC", serif;
-    }
-
-    .passport img {
-      width: 96px;
-      height: 96px;
-      background: var(--cream);
-      padding: 8px;
-    }
 
     .contact {
       background: var(--ink);
@@ -1432,7 +1001,7 @@
 
     @media (max-width: 980px) {
       .nav { display: none; }
-      .story-grid, .concierge-grid, .modal-card, .filter-panel, .trade-grid, .contact-grid, .portfolio-grid { grid-template-columns: 1fr; }
+      .story-grid, .modal-card, .filter-panel, .contact-grid { grid-template-columns: 1fr; }
       .product-grid, .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .watch-card:nth-child(2n) { margin-top: 0; }
       .modal-media { min-height: 340px; }
@@ -1478,13 +1047,8 @@
       .collection { order: 3; }
       .story-section { order: 4; }
       .services { order: 5; }
-      .trade { order: 6; }
-      #concierge { order: 7; }
-      .portfolio { order: 8; }
-      .contact { order: 9; }
+      .contact { order: 6; }
       .container { width: min(100% - 28px, 1180px); }
-      .trade .container,
-      .portfolio .container,
       .contact .container { width: min(100% - 28px, 1180px); }
       .nav-wrap { height: 72px; }
       .brand-mark { width: 36px; height: 36px; }
@@ -1538,7 +1102,7 @@
         top: 72px;
         z-index: 40;
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         border-top: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
         background: rgba(18, 14, 11, .96);
@@ -1576,7 +1140,7 @@
         font-size: .86rem;
         line-height: 1.75;
       }
-      .stat-strip, .product-grid, .service-grid, .form-grid, .portfolio-metrics { grid-template-columns: 1fr; }
+      .stat-strip, .product-grid, .service-grid, .form-grid { grid-template-columns: 1fr; }
       .stat-strip {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         margin-top: 16px;
@@ -1706,9 +1270,7 @@
         min-height: 40px;
         margin-top: 14px;
       }
-      .trade-grid,
-      .contact-grid,
-      .portfolio-grid { gap: 14px; }
+      .contact-grid { gap: 14px; }
       .panel {
         min-height: 0;
         padding: 22px;
@@ -1723,50 +1285,6 @@
         top: 18px;
         right: 18px;
         font-size: 3.2rem;
-      }
-      .accessory-row { gap: 8px 12px; }
-      .file-upload-row {
-        gap: 10px;
-      }
-      .file-trigger,
-      .file-name { font-size: .82rem; }
-      .trade-result {
-        margin: 18px 0;
-        padding: 20px;
-      }
-      .trade-result strong { font-size: 1.55rem; }
-      .luxury-action { min-height: 50px; }
-      .chat { height: 430px; }
-      .chat-form { grid-template-columns: 1fr; }
-      .chat-form .btn { width: 100%; }
-      .msg { max-width: 94%; }
-      .portfolio .section-head p { display: none; }
-      .portfolio-metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-      }
-      .portfolio-card {
-        min-height: 124px;
-        padding: 18px 14px;
-      }
-      .portfolio-card strong { font-size: 1.18rem; }
-      .chart-wrap {
-        height: 188px;
-        padding: 14px;
-      }
-      .asset-advisor {
-        min-height: 360px;
-        padding: 20px;
-      }
-      .asset-advisor .chat-log { min-height: 190px; }
-      .passport {
-        grid-template-columns: 72px 1fr;
-        gap: 12px;
-        padding: 14px;
-      }
-      .passport img {
-        width: 72px;
-        height: 72px;
       }
       .map-shell {
         min-height: 420px;
@@ -1831,10 +1349,9 @@
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="#collection" data-i18n="nav_collection">傳世珍藏</a>
-        <a href="#services" data-i18n="nav_services">藏品交流</a>
-        <a href="#trade" data-i18n="nav_trade">O2O 交易</a>
+        <a href="#services" data-i18n="nav_services">沙龍服務</a>
         <a href="#atelier" data-i18n="nav_atelier">匠心修復</a>
-        <a class="accent" href="#concierge" data-i18n="nav_concierge">智能管家</a>
+        <a class="accent" href="#contact" data-i18n="nav_contact">預約品鑑</a>
       </nav>
       <div class="nav-actions">
         <button class="lang-btn" type="button" id="langBtn" aria-label="Switch language">EN</button>
@@ -1843,10 +1360,9 @@
     </div>
     <div class="mobile-panel" id="mobilePanel">
       <a href="#collection" data-i18n="nav_collection">傳世珍藏</a>
-      <a href="#services" data-i18n="nav_services">藏品交流</a>
-      <a href="#trade" data-i18n="nav_trade">O2O 交易</a>
+      <a href="#services" data-i18n="nav_services">沙龍服務</a>
       <a href="#atelier" data-i18n="nav_atelier">匠心修復</a>
-      <a href="#concierge" data-i18n="nav_concierge">智能管家</a>
+      <a href="#contact" data-i18n="nav_contact">預約品鑑</a>
     </div>
   </header>
 
@@ -1856,18 +1372,16 @@
       <div class="hero-content">
         <span class="eyebrow" data-i18n="hero_kicker">Begin Your Own Tradition</span>
         <h1 data-i18n="hero_title">尊時匯</h1>
-        <p data-i18n="hero_copy">香港高級鐘錶官方沙龍，為藏家甄選 Patek Philippe、Rolex、Audemars Piguet 等傳世時計，並提供寄售、鑑定、修復與私人品鑑服務。</p>
+        <p data-i18n="hero_copy">香港高級鐘錶官方沙龍，專注甄選 Patek Philippe、Rolex、Audemars Piguet 等全新名錶，並提供鑑定、保養與私人品鑑服務。</p>
         <div class="button-row">
           <a class="btn" href="#collection"><i data-lucide="watch"></i><span data-i18n="hero_primary">尋覓傳世時計</span></a>
-          <a class="btn secondary" href="#concierge"><i data-lucide="message-square"></i><span data-i18n="hero_secondary">諮詢行情管家</span></a>
+          <a class="btn secondary" href="#contact"><i data-lucide="calendar-check"></i><span data-i18n="hero_secondary">預約私人品鑑</span></a>
         </div>
       </div>
     </section>
 
     <nav class="mobile-market-dock" aria-label="Mobile collector actions">
       <a href="#collection"><i data-lucide="search"></i><span>查看現貨</span></a>
-      <a href="#trade"><i data-lucide="send"></i><span>寄賣</span></a>
-      <a href="#trade"><i data-lucide="repeat-2"></i><span>換錶</span></a>
       <a href="#contact"><i data-lucide="calendar-check"></i><span>預約</span></a>
     </nav>
 
@@ -1924,17 +1438,17 @@
       <div class="container">
         <div class="section-head center">
           <span class="eyebrow" data-i18n="services_kicker">The Horology Atelier</span>
-          <h2 data-i18n="services_title">藏品交流與工坊服務</h2>
-          <p data-i18n="services_copy">以國際拍賣行標準處理估價、寄售、收購與維修，讓高價時計的流轉保持清晰、莊重與可追溯。</p>
+          <h2 data-i18n="services_title">全新名錶與工坊服務</h2>
+          <p data-i18n="services_copy">以嚴謹標準甄選全新名錶，並提供鑑定、保養與私人品鑑，讓每次選購都清晰、從容且值得信賴。</p>
         </div>
         <div class="service-grid">
           <article class="service-card">
             <div>
               <i data-lucide="landmark"></i>
-              <h3 data-i18n="service_1_title">收藏庫釋放</h3>
-              <p data-i18n="service_1_copy">根據成交紀錄、稀缺度、品相與附件完整度，提供透明市場指引價與即時收購方案。</p>
+              <h3 data-i18n="service_1_title">全新名錶甄選</h3>
+              <p data-i18n="service_1_copy">專注搜尋全新與未使用時計，核對型號、年份、附件與供應狀態，提供清晰的選購建議。</p>
             </div>
-            <a class="btn secondary" href="#concierge"><i data-lucide="arrow-right"></i><span data-i18n="service_cta">預約評估</span></a>
+            <a class="btn secondary" href="#contact"><i data-lucide="arrow-right"></i><span data-i18n="service_cta">預約品鑑</span></a>
           </article>
           <article class="service-card">
             <div>
@@ -1956,159 +1470,12 @@
       </div>
     </section>
 
-    <section class="trade" id="trade">
-      <div class="container">
-        <div class="section-head center">
-          <span class="eyebrow" data-i18n="trade_kicker">Liquidity Services</span>
-          <h2 data-i18n="trade_title">15 分鐘極速交收與以錶換錶</h2>
-          <p data-i18n="trade_copy">線上提交資料，線下由尖沙咀地舖專員完成鑑定、寄賣、收購或補差價換藏。系統會先按現貨庫存估算交易差額。</p>
-        </div>
-        <div class="trade-grid">
-          <article class="panel" data-index="I">
-            <h3 data-i18n="sell_title">出售 / 寄賣表單</h3>
-            <p data-i18n="sell_copy">上傳最多 5 張實物圖片，系統會先作前端壓縮預覽；專員收到後以 WhatsApp 跟進，提供 15 分鐘極速交收服務。</p>
-            <form id="sellForm" class="form-grid sell-form">
-              <div class="field">
-                <label for="sellBrand" data-i18n="sell_brand">品牌</label>
-                <input id="sellBrand" required placeholder="Rolex">
-              </div>
-              <div class="field">
-                <label for="sellModel" data-i18n="sell_model">型號</label>
-                <input id="sellModel" required placeholder="116500LN">
-              </div>
-              <div class="field year-field">
-                <label for="sellYear" data-i18n="sell_year">年份</label>
-                <input id="sellYear" placeholder="2022">
-              </div>
-              <div class="field file-field">
-                <label for="sellImages" data-i18n="sell_images">圖片壓縮上傳</label>
-                <div class="file-upload-row">
-                  <input id="sellImages" type="file" accept="image/*" multiple>
-                  <label class="file-trigger" for="sellImages"><i data-lucide="image-up"></i><span>上傳圖片</span></label>
-                  <span class="file-name" id="sellImageName">尚未選擇圖片</span>
-                </div>
-                <div class="helper-text" id="sellImageStatus">最多 5 張，提交前會壓縮為 1200px 以內預覽圖。</div>
-              </div>
-              <div class="full accessory-block">
-                <span class="helper-text" data-i18n="sell_accessories">配件勾選</span>
-                <div class="accessory-row">
-                  <label><input type="checkbox" name="accessory" value="box"> <span data-i18n="acc_box">原廠錶盒</span></label>
-                  <label><input type="checkbox" name="accessory" value="papers"> <span data-i18n="acc_papers">保卡 / 證書</span></label>
-                  <label><input type="checkbox" name="accessory" value="receipt"> <span data-i18n="acc_receipt">購買單據</span></label>
-                </div>
-              </div>
-              <button class="luxury-action full form-action" type="submit"><i data-lucide="send"></i><span data-i18n="sell_submit">獲取即時報價</span></button>
-            </form>
-          </article>
-          <article class="panel" data-index="II">
-            <h3 data-i18n="trade_calc_title">以錶換錶計算器</h3>
-            <p data-i18n="trade_calc_copy">選擇欲購入現貨，再輸入舊錶估值，系統會根據庫存指引價動態計算補差價或套現金額。</p>
-            <div class="trade-panel-body">
-              <div class="field">
-                <label for="tradeTarget" data-i18n="trade_target">目標現貨</label>
-                <select id="tradeTarget"></select>
-              </div>
-              <div class="field" style="margin-top: 18px;">
-                <label for="tradeOwnedValue" data-i18n="trade_owned">舊錶估值 (HKD)</label>
-                <input id="tradeOwnedValue" type="number" min="0" step="1000" placeholder="150000">
-              </div>
-              <div class="trade-result">
-                <span id="tradeResultLabel" data-i18n="trade_result_label">Estimated Top-up 預估補差價</span>
-                <strong id="tradeDiff">HKD --</strong>
-              </div>
-              <button class="luxury-action subtle form-action" id="lockTrade" type="button"><i data-lucide="lock"></i><span data-i18n="trade_lock">鎖定交易</span></button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="concierge">
-      <div class="container concierge-grid">
-        <div>
-          <div class="section-head">
-            <span class="eyebrow" data-i18n="ai_kicker">AI Horology Concierge</span>
-            <h2 data-i18n="ai_title">日內瓦智能鐘錶管家</h2>
-            <p data-i18n="ai_copy">輸入腕錶型號或品牌系列，管家會以市場行情、工藝背景與稀缺度方向回覆，並引導閣下預約實體沙龍或 WhatsApp 專家洽談。</p>
-          </div>
-          <div class="quick-actions">
-            <button class="btn dark" type="button" data-prompt="5712/1A"><i data-lucide="sparkles"></i><span>5712/1A</span></button>
-            <button class="btn secondary" type="button" data-prompt="Daytona 116500LN"><i data-lucide="timer"></i><span>Daytona</span></button>
-            <button class="btn secondary" type="button" data-prompt="Royal Oak 15500ST"><i data-lucide="gem"></i><span>Royal Oak</span></button>
-          </div>
-        </div>
-        <div class="chat-shell">
-          <div class="chat" role="region" aria-label="AI horology concierge">
-            <div class="chat-head">
-              <span data-i18n="chat_title">Secure Salon Channel</span>
-              <i data-lucide="lock-keyhole"></i>
-            </div>
-            <div class="chat-log" id="chatLog"></div>
-            <form class="chat-form" id="chatForm">
-              <input id="chatInput" autocomplete="off" data-i18n-placeholder="chat_placeholder" placeholder="請輸入型號，例如 116500LN 或 5711">
-              <button class="btn" type="submit"><i data-lucide="send"></i><span data-i18n="chat_send">詢問</span></button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="portfolio" id="portfolio">
-      <div class="container">
-        <div class="section-head center">
-          <span class="eyebrow" data-i18n="portfolio_kicker">Smart Vault</span>
-          <h2 data-i18n="portfolio_title">AI 名錶資產 Portfolio</h2>
-          <p data-i18n="portfolio_copy">示範用戶儀表板以市場行情 API 形式展示收藏走勢，並為地舖智能櫥窗輸出 QR Code、Stripe 按金鎖定與 NFC 數位護照入口。</p>
-        </div>
-        <div class="portfolio-grid">
-          <div>
-            <div class="portfolio-metrics">
-              <div class="portfolio-card">
-                <b>Total Value 總市值</b>
-                <strong>HKD 2,450,000</strong>
-                <span class="helper-text">+4.2% / 30 days</span>
-              </div>
-              <div class="portfolio-card">
-                <b>Collection Size 藏品數量</b>
-                <strong>3 枚</strong>
-                <span class="helper-text">Patek Philippe, Rolex</span>
-              </div>
-            </div>
-            <div class="chart-wrap">
-              <span class="chart-tag">Live Market API</span>
-              <canvas id="portfolioChart" width="900" height="420" aria-label="Portfolio value chart"></canvas>
-            </div>
-            <div class="passport" id="nfcPassport">
-              <img id="qrcode" alt="Smart Window QR Code">
-              <div>
-                <h3 style="margin: 0 0 8px; color: var(--gold); font-family: Cinzel, serif;">NFC Digital Passport</h3>
-                <p class="helper-text" style="margin: 0;">加密 URL 路由示範：讀取 NFC 卡後展示鑑定報告、Stripe 按金鎖定與地舖保證回收價。</p>
-              </div>
-            </div>
-          </div>
-          <div class="asset-advisor">
-            <h3>行情與工藝顧問</h3>
-            <div class="chat-log" id="assetChatLog">
-              <div class="msg bot">
-                <strong>The Butler</strong>
-                <span>尊敬的藏家，您的資產組合本月表現優異。請問今日需要查閱哪款時計的歷史淵源或預測行情？</span>
-              </div>
-            </div>
-            <form class="chat-form" id="assetChatForm">
-              <input id="assetChatInput" autocomplete="off" placeholder="詢問型號，如 5711/1A...">
-              <button class="btn" type="submit"><span>詢問</span></button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="contact" id="contact">
       <div class="container">
         <div class="section-head center">
           <span class="eyebrow" data-i18n="contact_kicker">Private Appointment</span>
           <h2 data-i18n="contact_title">預約私人沙龍</h2>
-          <p data-i18n="contact_copy">親臨香港旗艦沙龍，在私密環境中品鑑現貨、提交寄售委託或安排腕錶保養。</p>
+          <p data-i18n="contact_copy">親臨香港旗艦沙龍，在私密環境中品鑑全新現貨、了解到貨資訊或安排腕錶保養。</p>
         </div>
         <div class="contact-grid">
           <form class="panel form-grid" id="vvipForm">
@@ -2129,7 +1496,6 @@
               <select id="appointmentType">
                 <option value="watch" data-i18n="appointment_watch">看錶 / Viewing</option>
                 <option value="lounge" data-i18n="appointment_lounge">Lounge 私人酒廊</option>
-                <option value="trade" data-i18n="appointment_trade">出售 / 以錶換錶</option>
               </select>
             </div>
             <div class="field full">
@@ -2189,15 +1555,14 @@
     const i18n = {
       zh: {
         nav_collection: "傳世珍藏",
-        nav_services: "藏品交流",
-        nav_trade: "O2O 交易",
+        nav_services: "沙龍服務",
         nav_atelier: "匠心修復",
-        nav_concierge: "智能管家",
+        nav_contact: "預約品鑑",
         hero_kicker: "Begin Your Own Tradition",
         hero_title: "尊時匯",
-        hero_copy: "香港高級鐘錶官方沙龍，為藏家甄選 Patek Philippe、Rolex、Audemars Piguet 等傳世時計，並提供寄售、鑑定、修復與私人品鑑服務。",
+        hero_copy: "香港高級鐘錶官方沙龍，專注甄選 Patek Philippe、Rolex、Audemars Piguet 等全新名錶，並提供鑑定、保養與私人品鑑服務。",
         hero_primary: "尋覓傳世時計",
-        hero_secondary: "諮詢行情管家",
+        hero_secondary: "預約私人品鑑",
         story_kicker: "The Philosophy",
         story_title: "時間藝術的守護者",
         story_copy: "每一枚複雜功能腕錶，都是機芯、材質、比例與歷史沉澱的共同證明。尊時匯以沙龍式陳列取代倉促交易，讓藏家在充分資訊與私密接待中完成選購、交流與傳承。",
@@ -2219,57 +1584,20 @@
         filter_any_category: "全部系列",
         filter_any_condition: "全部狀態",
         condition_unworn: "未使用 / 全新",
-        condition_mint: "極佳品相",
         condition_vintage: "收藏級古董",
         services_kicker: "The Horology Atelier",
-        services_title: "藏品交流與工坊服務",
-        services_copy: "以國際拍賣行標準處理估價、寄售、收購與維修，讓高價時計的流轉保持清晰、莊重與可追溯。",
-        service_1_title: "收藏庫釋放",
-        service_1_copy: "根據成交紀錄、稀缺度、品相與附件完整度，提供透明市場指引價與即時收購方案。",
+        services_title: "全新名錶與工坊服務",
+        services_copy: "以嚴謹標準甄選全新名錶，並提供鑑定、保養與私人品鑑，讓每次選購都清晰、從容且值得信賴。",
+        service_1_title: "全新名錶甄選",
+        service_1_copy: "專注搜尋全新與未使用時計，核對型號、年份、附件與供應狀態，提供清晰的選購建議。",
         service_2_title: "鑑定檔案",
         service_2_copy: "核對機芯、錶殼、證書、保卡、維修紀錄與配件，形成完整的私人藏品檔案冊。",
         service_3_title: "匠心修復",
         service_3_copy: "由資深製錶師處理洗油、擒縱微調、防水測試與外觀保養，盡量保留腕錶原始輪廓。",
-        service_cta: "預約評估",
-        trade_kicker: "Liquidity Services",
-        trade_title: "15 分鐘極速交收與以錶換錶",
-        trade_copy: "線上提交資料，線下由尖沙咀地舖專員完成鑑定、寄賣、收購或補差價換藏。系統會先按現貨庫存估算交易差額。",
-        sell_title: "出售 / 寄賣表單",
-        sell_copy: "上傳最多 5 張實物圖片，系統會先作前端壓縮預覽；專員收到後以 WhatsApp 跟進，提供 15 分鐘極速交收服務。",
-        sell_brand: "品牌",
-        sell_model: "型號",
-        sell_year: "年份",
-        sell_images: "圖片壓縮上傳",
-        sell_accessories: "配件勾選",
-        acc_box: "原廠錶盒",
-        acc_papers: "保卡 / 證書",
-        acc_receipt: "購買單據",
-        sell_submit: "獲取即時報價",
-        trade_calc_title: "以錶換錶計算器",
-        trade_calc_copy: "選擇欲購入現貨，再輸入舊錶估值，系統會根據庫存指引價動態計算補差價或套現金額。",
-        trade_target: "目標現貨",
-        trade_owned: "舊錶估值 (HKD)",
-        trade_result_label: "Estimated Top-up 預估補差價",
-        trade_cashback_label: "Cash Back 預估套現金額",
-        trade_lock: "鎖定交易",
-        ai_kicker: "AI Horology Concierge",
-        ai_title: "日內瓦智能鐘錶管家",
-        ai_copy: "輸入腕錶型號或品牌系列，管家會以市場行情、工藝背景與稀缺度方向回覆，並引導閣下預約實體沙龍或 WhatsApp 專家洽談。",
-        chat_title: "Secure Salon Channel",
-        chat_placeholder: "請輸入型號，例如 116500LN 或 5711",
-        chat_send: "詢問",
-        bot_name: "The Butler",
-        user_name: "Collector",
-        bot_welcome: "尊敬的藏家，您好。我是您的專屬鐘錶管家。請問閣下今日想了解哪一款傳世時計？",
-        bot_reply: "尊敬的藏家，關於「{query}」，目前建議先核驗年份、附件完整度、錶殼拋光痕跡與近三個月成交紀錄。若閣下願意，我們可安排沙龍專家提供更精準的市場指引與收購方案。",
-        bot_thinking: "管家正在查閱行情與工藝資料...",
-        bot_error: "目前模型服務暫時未能連線，已先提供基礎評估方向。請稍後再試，或直接 WhatsApp 預約沙龍專家。",
-        portfolio_kicker: "Smart Vault",
-        portfolio_title: "AI 名錶資產 Portfolio",
-        portfolio_copy: "示範用戶儀表板以市場行情 API 形式展示收藏走勢，並為地舖智能櫥窗輸出 QR Code、Stripe 按金鎖定與 NFC 數位護照入口。",
+        service_cta: "預約品鑑",
         contact_kicker: "Private Appointment",
         contact_title: "預約私人沙龍",
-        contact_copy: "親臨香港旗艦沙龍，在私密環境中品鑑現貨、提交寄售委託或安排腕錶保養。",
+        contact_copy: "親臨香港旗艦沙龍，在私密環境中品鑑全新現貨、了解到貨資訊或安排腕錶保養。",
         contact_cta: "WhatsApp 預約品鑑",
         contact_location: "香港九龍尖沙咀 尊時沙龍",
         contact_hours: "周一至周六 11:00 - 19:00",
@@ -2278,7 +1606,6 @@
         appointment_type: "預約類型",
         appointment_watch: "看錶 / Viewing",
         appointment_lounge: "Lounge 私人酒廊",
-        appointment_trade: "出售 / 以錶換錶",
         appointment_time: "預約時間",
         traffic_copy: "港鐵尖沙咀站 A1 出口步行約 5 分鐘；VVIP 可於提交車牌後由專員安排 VIP 泊車。",
         modal_ask: "索取市場報價",
@@ -2299,23 +1626,19 @@
         reserve_button: "付按金鎖定 (Stripe)",
         waitlist_button: "加入候補名單",
         no_products: "目前沒有符合篩選條件的地舖現貨。",
-        toast_sell: "寄賣 / 收購資料已送出，專員將於 15 分鐘內透過 WhatsApp 聯絡您。",
         toast_vvip: "預約請求已整理，正在開啟 WhatsApp 帶入車牌與預約類型。",
-        toast_trade_missing: "請先選擇欲購入的目標腕錶並輸入舊錶估值。",
-        toast_trade: "已啟動鎖定交易流程，專員將確認補差價與 24H 保留安排。",
         toast_stripe: "Stripe 按金鎖定流程已啟動，客服確認後前台將顯示 24 小時保留中。"
       },
       en: {
         nav_collection: "Collections",
-        nav_services: "Acquisition",
-        nav_trade: "O2O Trade",
+        nav_services: "Salon Services",
         nav_atelier: "Restoration",
-        nav_concierge: "Concierge",
+        nav_contact: "Book a Viewing",
         hero_kicker: "Begin Your Own Tradition",
         hero_title: "LUXE MONTRE",
-        hero_copy: "A Hong Kong haute horology salon curating Patek Philippe, Rolex, Audemars Piguet and other collectible timepieces with consignment, authentication, restoration and private appointments.",
+        hero_copy: "A Hong Kong haute horology salon focused on new Patek Philippe, Rolex, Audemars Piguet and other exceptional timepieces, with authentication, care and private appointments.",
         hero_primary: "Explore Timepieces",
-        hero_secondary: "Ask Concierge",
+        hero_secondary: "Book a Private Viewing",
         story_kicker: "The Philosophy",
         story_title: "Guardians of Horological Art",
         story_copy: "Every complicated watch carries movement architecture, material discipline, proportion and history. LUXE MONTRE replaces rushed transactions with salon presentation, verified information and discreet collector service.",
@@ -2337,57 +1660,20 @@
         filter_any_category: "All collections",
         filter_any_condition: "All conditions",
         condition_unworn: "Unworn / New",
-        condition_mint: "Mint",
         condition_vintage: "Collector vintage",
         services_kicker: "The Horology Atelier",
-        services_title: "Acquisition & Atelier Services",
-        services_copy: "Auction-grade valuation, consignment, acquisition and restoration for high-value watches with clarity, discretion and traceability.",
-        service_1_title: "Collection Release",
-        service_1_copy: "Transparent guidance based on recent transactions, rarity, condition and accessory completeness, with acquisition options.",
+        services_title: "New Timepieces & Atelier Services",
+        services_copy: "Carefully sourced new timepieces, authentication, care and private viewing with a clear and discreet salon experience.",
+        service_1_title: "New Watch Curation",
+        service_1_copy: "We focus on new and unworn timepieces, reviewing reference, year, accessories and availability before offering clear purchase guidance.",
         service_2_title: "Authentication Dossier",
         service_2_copy: "Movement, case, certificate, warranty card, service history and accessories are reviewed for a private collector file.",
         service_3_title: "Master Restoration",
         service_3_copy: "Experienced watchmakers handle overhaul, regulation, pressure testing and refinishing while preserving original case definition.",
-        service_cta: "Request Review",
-        trade_kicker: "Liquidity Services",
-        trade_title: "15-Minute Handover & Trade-In",
-        trade_copy: "Submit details online, then complete authentication, consignment, acquisition or top-up exchange with the Tsim Sha Tsui salon team.",
-        sell_title: "Sell / Consign Form",
-        sell_copy: "Upload up to 5 product photos. The browser prepares compressed previews before a specialist follows up on WhatsApp for 15-minute handover.",
-        sell_brand: "Brand",
-        sell_model: "Reference",
-        sell_year: "Year",
-        sell_images: "Compressed images",
-        sell_accessories: "Accessories",
-        acc_box: "Original box",
-        acc_papers: "Card / certificate",
-        acc_receipt: "Purchase receipt",
-        sell_submit: "Request Instant Quote",
-        trade_calc_title: "Trade-In Calculator",
-        trade_calc_copy: "Choose an available target watch, enter your estimated watch value, and calculate the top-up or cash-back amount from stock data.",
-        trade_target: "Target timepiece",
-        trade_owned: "Your watch value (HKD)",
-        trade_result_label: "Estimated Top-up",
-        trade_cashback_label: "Estimated Cash Back",
-        trade_lock: "Lock Trade",
-        ai_kicker: "AI Horology Concierge",
-        ai_title: "Your Geneva AI Concierge",
-        ai_copy: "Enter a reference or collection. The concierge responds with market context, craft background and rarity direction, then routes you to a salon appointment or WhatsApp specialist.",
-        chat_title: "Secure Salon Channel",
-        chat_placeholder: "Enter a reference, e.g. 116500LN or 5711",
-        chat_send: "Send",
-        bot_name: "The Butler",
-        user_name: "Collector",
-        bot_welcome: "Respected Collector, welcome. I am your horology concierge. Which timepiece shall we discuss today?",
-        bot_reply: "Respected Collector, regarding “{query}”, I suggest reviewing production year, accessories, case polishing and recent transaction records. Our salon specialist can provide a more precise valuation and acquisition proposal.",
-        bot_thinking: "The concierge is reviewing market and craft context...",
-        bot_error: "The model service is temporarily unavailable. I have provided basic guidance for now. Please try again later or contact the salon via WhatsApp.",
-        portfolio_kicker: "Smart Vault",
-        portfolio_title: "AI Watch Asset Portfolio",
-        portfolio_copy: "A demo dashboard visualizes collection value through a market API pattern and outputs smart-window QR, Stripe deposit lock and NFC digital passport entry points.",
+        service_cta: "Book a Viewing",
         contact_kicker: "Private Appointment",
         contact_title: "Private Appointments",
-        contact_copy: "Visit the Hong Kong flagship salon for private viewing, consignment submission or maintenance consultation.",
+        contact_copy: "Visit the Hong Kong flagship salon to view new arrivals, discuss availability or arrange watch care.",
         contact_cta: "Book via WhatsApp",
         contact_location: "Tsim Sha Tsui, Hong Kong",
         contact_hours: "Monday to Saturday 11:00 - 19:00",
@@ -2396,7 +1682,6 @@
         appointment_type: "Appointment type",
         appointment_watch: "Viewing",
         appointment_lounge: "Private lounge",
-        appointment_trade: "Sell / trade-in",
         appointment_time: "Appointment time",
         traffic_copy: "Around 5 minutes from Tsim Sha Tsui MTR Exit A1. VVIP parking can be arranged after plate submission.",
         modal_ask: "Request Valuation",
@@ -2417,10 +1702,7 @@
         reserve_button: "Lock Deposit (Stripe)",
         waitlist_button: "Join Waitlist",
         no_products: "No in-store ready watches match these filters.",
-        toast_sell: "Sell / consignment details sent. A specialist will contact you on WhatsApp within 15 minutes.",
         toast_vvip: "Appointment request prepared. WhatsApp is opening with plate and appointment type.",
-        toast_trade_missing: "Select a target watch and enter your watch value first.",
-        toast_trade: "Trade lock started. A specialist will confirm the top-up and 24H reserve arrangement.",
         toast_stripe: "Stripe deposit lock started. After service confirmation, the storefront will show a 24-hour reserve overlay."
       }
     };
@@ -2545,13 +1827,11 @@
 
     const conditions = [
       { id: "unworn", key: "condition_unworn" },
-      { id: "mint", key: "condition_mint" },
       { id: "vintage", key: "condition_vintage" }
     ];
 
     let products = fallbackProducts;
     let currentLang = "zh";
-    let compressedSellImages = [];
 
     const byId = (id) => document.getElementById(id);
     const t = (key) => i18n[currentLang][key] || key;
@@ -2581,9 +1861,6 @@
       byId("langBtn").textContent = currentLang === "zh" ? "EN" : "ZH";
       populateFilters();
       renderProducts();
-      populateTradeTargets();
-      drawPortfolioChart();
-      resetChat();
       refreshIcons();
     }
 
@@ -2591,9 +1868,10 @@
       if (!product) return null;
       const priceText = String(product.price || "");
       const numericPrice = Number(product.numericPrice) || Number(priceText.replace(/[^\d]/g, "")) || 0;
+      const condition = product.condition === "mint" ? "unworn" : (product.condition || "unworn");
       return {
         ...product,
-        condition: product.condition || (Number(product.year) >= 2022 ? "unworn" : "mint"),
+        condition,
         inStore: product.inStore !== false && product.stockStatus !== "hidden",
         numericPrice,
         priceMode: product.priceMode || (priceText.toLowerCase().includes("request") ? "inquiry" : "price")
@@ -2757,191 +2035,12 @@
       window.open(`${whatsappBase}${whatsappNumber.slice(3)}?text=${encodeURIComponent(message)}`, "_blank", "noreferrer");
     }
 
-    function parseHkd(value) {
-      return Number(String(value || "").replace(/[^\d]/g, "")) || 0;
-    }
-
     function formatHkd(value) {
       return new Intl.NumberFormat("en-HK", {
         style: "currency",
         currency: "HKD",
         maximumFractionDigits: 0
       }).format(Math.max(0, Number(value) || 0));
-    }
-
-    function handleSellImages(event) {
-      const files = Array.from(event.target.files || []);
-      const status = byId("sellImageStatus");
-      const name = byId("sellImageName");
-      if (files.length > 5) {
-        event.target.value = "";
-        compressedSellImages = [];
-        name.textContent = "尚未選擇圖片";
-        status.textContent = "最多 5 張圖片，請重新選擇。";
-        return;
-      }
-      compressedSellImages = files.map((file) => ({
-        name: file.name,
-        originalSize: file.size,
-        estimatedCompressedSize: Math.round(file.size * .58)
-      }));
-      status.textContent = files.length
-        ? `已準備壓縮 ${files.length} 張圖片，估算容量 ${Math.round(compressedSellImages.reduce((sum, file) => sum + file.estimatedCompressedSize, 0) / 1024)} KB。`
-        : "最多 5 張，提交前會壓縮為 1200px 以內預覽圖。";
-      name.textContent = files.length
-        ? (files.length === 1 ? files[0].name : `${files.length} 張圖片已選擇`)
-        : "尚未選擇圖片";
-    }
-
-    function populateTradeTargets() {
-      const select = byId("tradeTarget");
-      if (!select) return;
-      const previous = select.value;
-      select.innerHTML = "";
-      const empty = document.createElement("option");
-      empty.value = "";
-      empty.textContent = currentLang === "zh" ? "請選擇目標腕錶" : "Select a target watch";
-      select.appendChild(empty);
-      products.map(normalizeFrontendProduct)
-        .filter((product) => product && product.numericPrice > 0 && product.stockStatus !== "reserved" && product.stockStatus !== "hidden")
-        .forEach((product) => {
-          const option = document.createElement("option");
-          option.value = String(product.numericPrice);
-          option.textContent = `${product.brand} ${product.title} - ${formatHkd(product.numericPrice)}`;
-          select.appendChild(option);
-        });
-      select.value = Array.from(select.options).some((option) => option.value === previous) ? previous : "";
-      calculateTrade();
-    }
-
-    function calculateTrade() {
-      const targetPrice = Number(byId("tradeTarget")?.value || 0);
-      const ownedValue = Number(byId("tradeOwnedValue")?.value || 0);
-      const label = byId("tradeResultLabel");
-      const diff = byId("tradeDiff");
-      if (!targetPrice || !ownedValue) {
-        label.textContent = t("trade_result_label");
-        diff.textContent = "HKD --";
-        return;
-      }
-      const delta = targetPrice - ownedValue;
-      label.textContent = delta >= 0 ? t("trade_result_label") : t("trade_cashback_label");
-      diff.textContent = formatHkd(Math.abs(delta));
-    }
-
-    function drawPortfolioChart() {
-      const canvas = byId("portfolioChart");
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      const ratio = window.devicePixelRatio || 1;
-      const width = Math.max(320, Math.floor(rect.width * ratio));
-      const height = Math.max(180, Math.floor(rect.height * ratio));
-      if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width;
-        canvas.height = height;
-      }
-      const ctx = canvas.getContext("2d");
-      const values = [2200000, 2250000, 2210000, 2350000, 2400000, 2450000];
-      const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
-      const pad = 46 * ratio;
-      const min = Math.min(...values) * .98;
-      const max = Math.max(...values) * 1.02;
-      ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = "#211814";
-      ctx.fillRect(0, 0, width, height);
-      ctx.strokeStyle = "rgba(197,160,89,.18)";
-      ctx.lineWidth = 1;
-      for (let i = 0; i < 5; i += 1) {
-        const y = pad + ((height - pad * 2) / 4) * i;
-        ctx.beginPath();
-        ctx.moveTo(pad, y);
-        ctx.lineTo(width - pad, y);
-        ctx.stroke();
-      }
-      const points = values.map((value, index) => ({
-        x: pad + ((width - pad * 2) / (values.length - 1)) * index,
-        y: height - pad - ((value - min) / (max - min)) * (height - pad * 2)
-      }));
-      ctx.beginPath();
-      points.forEach((point, index) => {
-        if (index === 0) ctx.moveTo(point.x, point.y);
-        else ctx.lineTo(point.x, point.y);
-      });
-      ctx.strokeStyle = "#c5a059";
-      ctx.lineWidth = 4 * ratio;
-      ctx.stroke();
-      ctx.fillStyle = "#c5a059";
-      ctx.font = `${18 * ratio}px Cinzel, serif`;
-      points.forEach((point, index) => {
-        ctx.beginPath();
-        ctx.arc(point.x, point.y, 5 * ratio, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillText(labels[index], point.x - (14 * ratio), height - (10 * ratio));
-      });
-    }
-
-    function updateSmartWindowQr() {
-      const img = byId("qrcode");
-      if (!img) return;
-      const target = encodeURIComponent("https://luxemontre.hk/checkout/smart-window-stripe-deposit");
-      img.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${target}`;
-    }
-
-    function appendMessage(type, message) {
-      const item = document.createElement("div");
-      item.className = `msg ${type}`;
-      const name = document.createElement("strong");
-      name.textContent = type === "user" ? t("user_name") : t("bot_name");
-      const copy = document.createElement("span");
-      copy.textContent = message;
-      item.append(name, copy);
-      byId("chatLog").appendChild(item);
-      byId("chatLog").scrollTop = byId("chatLog").scrollHeight;
-      return item;
-    }
-
-    function appendAssetMessage(type, message) {
-      const log = byId("assetChatLog");
-      if (!log) return null;
-      const item = document.createElement("div");
-      item.className = `msg ${type}`;
-      const name = document.createElement("strong");
-      name.textContent = type === "user" ? t("user_name") : t("bot_name");
-      const copy = document.createElement("span");
-      copy.textContent = message;
-      item.append(name, copy);
-      log.appendChild(item);
-      log.scrollTop = log.scrollHeight;
-      return item;
-    }
-
-    function resetChat() {
-      byId("chatLog").innerHTML = "";
-      appendMessage("bot", t("bot_welcome"));
-    }
-
-    async function sendConcierge(query) {
-      const cleaned = query.trim().slice(0, 80);
-      if (!cleaned) return;
-      appendMessage("user", cleaned);
-      const pending = appendMessage("bot", t("bot_thinking"));
-
-      try {
-        const response = await fetch("/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            message: cleaned,
-            lang: currentLang
-          })
-        });
-        const data = await response.json();
-        const reply = data.reply || t("bot_reply").replace("{query}", cleaned);
-        pending.querySelector("span").textContent = response.ok ? reply : `${reply}\n${t("bot_error")}`;
-      } catch (error) {
-        pending.querySelector("span").textContent = t("bot_reply").replace("{query}", cleaned);
-      }
-      byId("chatLog").scrollTop = byId("chatLog").scrollHeight;
     }
 
     async function loadProducts() {
@@ -2964,7 +2063,6 @@
       }
       populateFilters();
       renderProducts();
-      populateTradeTargets();
     }
 
     byId("langBtn").addEventListener("click", () => {
@@ -2989,55 +2087,6 @@
       if (event.target.id === "modal") closeModal();
     });
 
-    byId("chatForm").addEventListener("submit", (event) => {
-      event.preventDefault();
-      const input = byId("chatInput");
-      sendConcierge(input.value);
-      input.value = "";
-    });
-
-    byId("assetChatForm").addEventListener("submit", (event) => {
-      event.preventDefault();
-      const input = byId("assetChatInput");
-      const query = input.value.trim().slice(0, 80);
-      if (!query) return;
-      appendAssetMessage("user", query);
-      const pending = appendAssetMessage("bot", "Retrieving market data...");
-      window.setTimeout(() => {
-        if (pending) {
-          pending.querySelector("span").textContent = "根據現貨庫存與近期市場走勢，建議先核對年份、附件完整度與錶殼狀態；若要鎖定交易，可直接使用左側以錶換錶計算器或預約私人沙龍。";
-        }
-      }, 450);
-      input.value = "";
-    });
-
-    byId("sellImages").addEventListener("change", handleSellImages);
-    byId("sellForm").addEventListener("submit", (event) => {
-      event.preventDefault();
-      const brand = byId("sellBrand").value.trim();
-      const model = byId("sellModel").value.trim();
-      showToast(t("toast_sell"));
-      openWhatsapp(`Sell / consign request: ${brand} ${model}. Images prepared: ${compressedSellImages.length}. Please contact me for 15-minute handover.`);
-      event.target.reset();
-      compressedSellImages = [];
-      byId("sellImageName").textContent = "尚未選擇圖片";
-      byId("sellImageStatus").textContent = "最多 5 張，提交前會壓縮為 1200px 以內預覽圖。";
-    });
-
-    ["tradeTarget", "tradeOwnedValue"].forEach((id) => {
-      byId(id).addEventListener("input", calculateTrade);
-      byId(id).addEventListener("change", calculateTrade);
-    });
-
-    byId("lockTrade").addEventListener("click", () => {
-      if (!byId("tradeTarget").value || !byId("tradeOwnedValue").value) {
-        showToast(t("toast_trade_missing"));
-        return;
-      }
-      showToast(t("toast_trade"));
-      openWhatsapp(`I want to lock this trade. Target price: ${formatHkd(byId("tradeTarget").value)}. My watch estimate: ${formatHkd(byId("tradeOwnedValue").value)}.`);
-    });
-
     byId("vvipForm").addEventListener("submit", (event) => {
       event.preventDefault();
       const type = byId("appointmentType").selectedOptions[0]?.textContent || "";
@@ -3045,10 +2094,6 @@
       const time = byId("appointmentTime").value || "flexible";
       showToast(t("toast_vvip"));
       openWhatsapp(`VVIP appointment request. Type: ${type}. Plate: ${plate}. Time: ${time}.`);
-    });
-
-    document.querySelectorAll("[data-prompt]").forEach((btn) => {
-      btn.addEventListener("click", () => sendConcierge(btn.dataset.prompt));
     });
 
     document.addEventListener("keydown", (event) => {
@@ -3061,9 +2106,7 @@
     });
 
     window.addEventListener("load", refreshIcons);
-    window.addEventListener("resize", drawPortfolioChart);
     applyLanguage();
-    updateSmartWindowQr();
     loadProducts();
   </script>
 </body>
