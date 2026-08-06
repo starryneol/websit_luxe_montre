@@ -97,6 +97,9 @@ assert(html.indexOf('id="about"') < html.indexOf('id="contact"'), "About Us must
 assert(!html.includes('<span class="brand-mark">L</span>'), "The placeholder L badge must be replaced by the supplied emblem.");
 assert(!html.includes("Geneva Standard · Hong Kong"), "The old subtitle must make room for the Chinese brand name.");
 
+const brandSubRule = html.match(/\.brand-sub\s*\{(?<body>[^}]+)\}/)?.groups?.body || "";
+assert(brandSubRule.includes("align-items: baseline"), "Mixed Chinese and Latin brand text must share a typographic baseline.");
+
 const mobileMenuLinkRule = html.match(/\.mobile-panel a\s*\{(?<body>[^}]+)\}/)?.groups?.body || "";
 assert(mobileMenuLinkRule, "Missing mobile menu link styles.");
 assert(!mobileMenuLinkRule.includes("color: var(--ink)"), "Mobile menu links must not use dark ink text on a dark panel.");
